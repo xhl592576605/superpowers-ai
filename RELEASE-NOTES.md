@@ -633,6 +633,6 @@ None at this time.
 
 ---
 
-**Full Changelog:** https://github.com/obra/superpowers/compare/dd013f6...main
-**Skills Repository:** https://github.com/obra/superpowers-skills
-**Issues:** https://github.com/obra/superpowers/issues
+**Full Changelog:** https://github.com/xhl592576605/superpowers-ai/compare/dd013f6...main
+**Repository:** https://github.com/xhl592576605/superpowers-ai
+**Issues:** https://github.com/xhl592576605/superpowers-ai/issues
