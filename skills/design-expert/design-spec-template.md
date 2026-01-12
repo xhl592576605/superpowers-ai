@@ -1,260 +1,269 @@
-# DESIGN_SPEC Markdown 模板
+# DESIGN_SPEC Markdown Template
 
-生成设计规范文档时使用此模板。
+Use this template when generating design specification documents.
 
-复制此结构并填写所有章节。不要跳过任何章节。
+Copy this structure and fill in all sections. Do not skip any sections.
+
+**IMPORTANT:** This template is in English, but actual generated documents should be in **Chinese (Simplified)** per user requirements.
 
 ```markdown
-# 设计规范（DESIGN_SPEC）
+# Design Specification (DESIGN_SPEC)
 
-> 本次功能/模块名称：{功能名称}
-> 保存路径：.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md（{feature} 使用英文命名）
-> PRD 路径：.claude/superpowers/plan/change/{feature}/PRD.md（同一功能文件夹）
-> 后续改动必须同步更新该文件
+> Feature/Module: {feature name}
+> Path: `.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md` (use English for {feature})
+> PRD Path: `.claude/superpowers/plan/change/{feature}/PRD.md` (same feature folder)
+> Any changes must update this file synchronously
 
-## 1. 项目概述
+## 1. Project Overview
 
-### 1.1 基本信息
-- 功能/模块名称：
-- 目标平台：Web / 移动 / 桌面
-- 设计目标：
-- 设计偏好/品牌调性：
+### 1.1 Basic Information
+- Feature/Module Name:
+- Target Platform: Web / Mobile / Desktop
+- Design Objectives:
+- Design Preferences/Brand Tone:
 
-### 1.2 设计原则
-- 核心设计原则：
-- 品牌价值传递：
+### 1.2 Design Principles
+- Core design principles:
+- Brand value delivery:
 
-## 2. 用户与场景
+## 2. Users and Scenarios
 
-### 2.1 核心用户画像
-- 用户类型1：
-  - 基本特征：
-  - 使用场景：
-  - 期望体验：
+### 2.1 Core User Personas
+- User Type 1:
+  - Basic characteristics:
+  - Usage scenarios:
+  - Expected experience:
 
-### 2.2 关键场景与任务
-- 场景1：[描述]
-  - 用户目标：
-  - 关键操作：
-  - 成功标准：
+### 2.2 Key Scenarios and Tasks
+- Scenario 1: [Description]
+  - User goal:
+  - Key actions:
+  - Success criteria:
 
-### 2.3 体验痛点与机会点
-- 痛点1：
-- 机会点1：
+### 2.3 Experience Pain Points and Opportunities
+- Pain point 1:
+- Opportunity 1:
 
-## 3. 设计调研
+## 3. Design Research
 
-### 3.1 行业趋势
-- 趋势1：
-- 趋势2：
+### 3.1 Industry Trends
+- Trend 1:
+- Trend 2:
 
-### 3.2 竞品参考
-| 竞品 | 值得借鉴的设计 | 避免的设计 |
-|------|---------------|-----------|
-|      |               |           |
+### 3.2 Competitive Reference
+| Competitor | Design Worth Borrowing | Design to Avoid |
+|-----------|------------------------|-----------------|
+|           |                        |                 |
 
-### 3.3 结论与设计方向
-- 设计方向：
-- 视觉风格定位：
-- 交互策略：
+### 3.3 Conclusions and Design Direction
+- Design direction:
+- Visual style positioning:
+- Interaction strategy:
 
-## 4. 信息架构与流程
+## 4. Information Architecture and Flow
 
-### 4.1 信息架构
+### 4.1 Information Architecture
 ```
-{应用/系统}
-├─ 模块A
-│  ├─ 页面A1
-│  └─ 页面A2
-├─ 模块B
-│  └─ 页面B1
-└─ 模块C
+{Application/System}
+├─ Module A
+│  ├─ Page A1
+│  └─ Page A2
+├─ Module B
+│  └─ Page B1
+└─ Module C
 ```
 
-### 4.2 关键用户流程
-- 主流程：[分步描述]
-- 异常流程：[分步描述]
+### 4.2 Key User Flows
+- Main flow: [Step-by-step description]
+- Exception flow: [Step-by-step description]
 
-### 4.3 关键页面清单
-| 页面名称 | 主要功能 | 优先级 |
-|---------|---------|--------|
-| 首页 |  | P0 |
-| 列表页 |  | P1 |
+### 4.3 Key Page Inventory
+| Page Name | Main Function | Priority |
+|-----------|---------------|----------|
+| Home |  | P0 |
+| List Page |  | P1 |
 
-## 5. 视觉系统
+## 5. Visual System
 
-### 5.1 色彩体系
+### 5.1 Color System
 
-**主色彩（Primary Colors）**
-| Token | 色值 | 用途 |
-|-------|------|------|
-| --color-primary | #000 | 主按钮、链接 |
-| --color-primary-hover | #333 | 悬停状态 |
-| --color-primary-active | #666 | 激活状态 |
-| --color-primary-disabled | #999 | 禁用状态 |
+**Primary Colors**
+| Token | Color Value | Usage |
+|-------|-------------|-------|
+| --color-primary | #000 | Primary buttons, links |
+| --color-primary-hover | #333 | Hover state |
+| --color-primary-active | #666 | Active state |
+| --color-primary-disabled | #999 | Disabled state |
 
-**语义色彩（Semantic Colors）**
-| Token | 色值 | 用途 |
-|-------|------|------|
-| --color-success | #10B981 | 成功状态 |
-| --color-warning | #F59E0B | 警告状态 |
-| --color-error | #EF4444 | 错误状态 |
-| --color-info | #3B82F6 | 信息提示 |
+**Semantic Colors**
+| Token | Color Value | Usage |
+|-------|-------------|-------|
+| --color-success | #10B981 | Success state |
+| --color-warning | #F59E0B | Warning state |
+| --color-error | #EF4444 | Error state |
+| --color-info | #3B82F6 | Info notification |
 
-**中性色彩（Neutral Colors）**
-| Token | 色值 | 用途 |
-|-------|------|------|
-| --color-bg-primary | #FFFFFF | 主背景 |
-| --color-bg-secondary | #F3F4F6 | 次级背景 |
-| --color-text-primary | #111827 | 主文本 |
-| --color-text-secondary | #6B7280 | 次级文本 |
-| --color-border | #E5E7EB | 边框/分割线 |
+**Neutral Colors**
+| Token | Color Value | Usage |
+|-------|-------------|-------|
+| --color-bg-primary | #FFFFFF | Primary background |
+| --color-bg-secondary | #F3F4F6 | Secondary background |
+| --color-text-primary | #111827 | Primary text |
+| --color-text-secondary | #6B7280 | Secondary text |
+| --color-border | #E5E7EB | Border/divider |
 
-### 5.2 字体体系
+### 5.2 Typography System
 
-**字体家族**
-| Token | 字体 | 用途 |
-|-------|------|------|
-| --font-family-base | system-ui, -apple-system, sans-serif | 基础字体 |
-| --font-family-mono | 'SF Mono', Monaco, monospace | 代码/数字 |
+**Font Family**
+| Token | Font | Usage |
+|-------|------|-------|
+| --font-family-base | system-ui, -apple-system, sans-serif | Base font |
+| --font-family-mono | 'SF Mono', Monaco, monospace | Code/numbers |
 
-**字号与行高**
-| Token | 字号 | 行高 | 用途 |
-|-------|------|------|------|
-| --text-xs | 12px | 16px | 辅助说明 |
-| --text-sm | 14px | 20px | 小标签 |
-| --text-base | 16px | 24px | 正文 |
-| --text-lg | 18px | 28px | 小标题 |
-| --text-xl | 20px | 28px | 标题 |
-| --text-2xl | 24px | 32px | 大标题 |
-| --text-3xl | 30px | 38px | 页面标题 |
+**Font Size and Line Height**
+| Token | Font Size | Line Height | Usage |
+|-------|-----------|-------------|-------|
+| --text-xs | 12px | 16px | Auxiliary notes |
+| --text-sm | 14px | 20px | Small labels |
+| --text-base | 16px | 24px | Body text |
+| --text-lg | 18px | 28px | Small headings |
+| --text-xl | 20px | 28px | Headings |
+| --text-2xl | 24px | 32px | Large headings |
+| --text-3xl | 30px | 38px | Page titles |
 
-**字重**
-| Token | 字重 | 用途 |
-|-------|------|------|
-| --font-normal | 400 | 常规文本 |
-| --font-medium | 500 | 强调文本 |
-| --font-semibold | 600 | 小标题 |
-| --font-bold | 700 | 标题 |
+**Font Weight**
+| Token | Weight | Usage |
+|-------|--------|-------|
+| --font-normal | 400 | Regular text |
+| --font-medium | 500 | Emphasized text |
+| --font-semibold | 600 | Small headings |
+| --font-bold | 700 | Headings |
 
-### 5.3 栅格/间距
+### 5.3 Grid/Spacing
 
-**间距系统（8px 基准）**
-| Token | 值 | 用途 |
-|-------|---|------|
-| --spacing-0 | 0 | 无间距 |
-| --spacing-1 | 4px | 极小间距 |
-| --spacing-2 | 8px | 小间距 |
-| --spacing-3 | 12px | 默认间距 |
-| --spacing-4 | 16px | 中等间距 |
-| --spacing-6 | 24px | 大间距 |
-| --spacing-8 | 32px | 超大间距 |
+**Spacing System (8px base)**
+| Token | Value | Usage |
+|-------|-------|-------|
+| --spacing-0 | 0 | No spacing |
+| --spacing-1 | 4px | Minimal spacing |
+| --spacing-2 | 8px | Small spacing |
+| --spacing-3 | 12px | Default spacing |
+| --spacing-4 | 16px | Medium spacing |
+| --spacing-6 | 24px | Large spacing |
+| --spacing-8 | 32px | Extra large spacing |
 
-**容器宽度**
-| 断点 | 容器最大宽度 |
-|------|-------------|
+**Container Width**
+| Breakpoint | Container Max Width |
+|------------|---------------------|
 | Mobile | 100% |
 | Tablet | 768px |
 | Desktop | 1024px |
 | Wide | 1280px |
 
-### 5.4 图标/插画
-- 图标库：[如 Heroicons / Lucide / 自定义]
-- 图标尺寸：16px, 20px, 24px, 32px
-- 插画风格：[描述]
+### 5.4 Icons/Illustrations
+- Icon library: [e.g., Heroicons / Lucide / Custom]
+- Icon sizes: 16px, 20px, 24px, 32px
+- Illustration style: [Description]
 
-### 5.5 设计Token（命名与层级）
-- Token 命名规范：`--{category}-{property}-{variant}`
-- 层级结构：
-  - 基础 Token（原始值）
-  - 语义 Token（业务含义）
-  - 组件 Token（组件特定）
+### 5.5 Design Tokens (Naming and Hierarchy)
+- Token naming convention: `--{category}-{property}-{variant}`
+- Hierarchy structure:
+  - Base tokens (raw values)
+  - Semantic tokens (business meaning)
+  - Component tokens (component-specific)
 
-## 6. 组件规范
+## 6. Component Specifications
 
-### 6.1 基础组件
+### 6.1 Base Components
 
-**按钮（Button）**
-| 状态 | 样式 | Token |
-|------|------|-------|
-| 默认 | 主色背景，白色文字 | --button-primary |
-| 悬停 | 深主色背景 | --button-primary-hover |
-| 激活 | 更深主色背景 | --button-primary-active |
-| 禁用 | 灰色背景，不可点击 | --button-disabled |
-| 加载 | 旋转图标 | --button-loading |
+**Button**
+| State | Style | Token |
+|-------|-------|-------|
+| Default | Primary background, white text | --button-primary |
+| Hover | Darker primary background | --button-primary-hover |
+| Active | Even darker primary background | --button-primary-active |
+| Disabled | Gray background, not clickable | --button-disabled |
+| Loading | Spinning icon | --button-loading |
 
-**输入框（Input）**
-| 状态 | 样式 |
-|------|------|
-| 默认 | 灰色边框 |
-| 聚焦 | 蓝色边框，阴影 |
-| 错误 | 红色边框，错误提示 |
-| 禁用 | 灰色背景，不可输入 |
+**Input**
+| State | Style |
+|-------|-------|
+| Default | Gray border |
+| Focus | Blue border, shadow |
+| Error | Red border, error message |
+| Disabled | Gray background, not editable |
 
-### 6.2 业务组件
+### 6.2 Business Components
 
-**[组件名称1]**
-- 用途：
-- 组成：
-- 状态变体：
-- 使用场景：
+**[Component Name 1]**
+- Purpose:
+- Composition:
+- State variants:
+- Usage scenarios:
 
-### 6.3 状态规范
-所有组件必须包含以下状态：
-- 默认（Default）
-- 悬停（Hover）
-- 激活/选中（Active/Selected）
-- 禁用（Disabled）
-- 加载（Loading）
-- 错误（Error）
+### 6.3 State Specifications
+All components must include the following states:
+- Default
+- Hover
+- Active/Selected
+- Disabled
+- Loading
+- Error
 
-### 6.4 组件库对接
-- 使用的组件库：[如 Ant Design / Material-UI / Tailwind / 自定义]
-- 定制方式：
-- 版本约束：
+### 6.4 Component Library Integration
+- Component library in use: [e.g., Ant Design / Material-UI / Tailwind / Custom]
+- Customization method:
+- Version constraints:
 
-## 7. 交互规范
+## 7. Interaction Specifications
 
-### 7.1 反馈与动效
-- 按钮点击反馈：缩放 0.98，持续 100ms
-- 页面切换：淡入淡出，持续 200ms
-- 加载状态：旋转图标，线性动画
-- 微交互：悬停时颜色渐变，持续 150ms
+### 7.1 Feedback and Animation
+- Button click feedback: Scale 0.98, duration 100ms
+- Page transition: Fade in/out, duration 200ms
+- Loading state: Spinning icon, linear animation
+- Micro-interaction: Color gradient on hover, duration 150ms
 
-### 7.2 错误与空状态
-- 错误提示：红色文字 + 图标，显示在错误位置附近
-- 空状态：插画 + 提示文字 + 操作按钮
-- 加载状态：骨架屏或旋转图标
+### 7.2 Error and Empty States
+- Error message: Red text + icon, displayed near error location
+- Empty state: Illustration + prompt text + action button
+- Loading state: Skeleton screen or spinning icon
 
-### 7.3 可用性原则
-- 可点击元素最小尺寸：44×44px
-- 重要操作二次确认：删除、支付等
-- 表单验证：实时反馈，提交前最终校验
-- 撤销机制：提供撤销/重做选项
+### 7.3 Usability Principles
+- Minimum clickable element size: 44×44px
+- Secondary confirmation for critical actions: Delete, payment, etc.
+- Form validation: Real-time feedback, final verification before submit
+- Undo mechanism: Provide undo/redo options
 
-### 7.4 无障碍与可访问性
+### 7.4 Accessibility
 
-**对比度要求**
-- 文本对比度：至少 4.5:1（WCAG AA）
-- 大文本对比度：至少 3:1（WCAG AA）
-- 非文本对比度：至少 3:1（WCAG AA）
+**Contrast Requirements**
+- Text contrast: At least 4.5:1 (WCAG AA)
+- Large text contrast: At least 3:1 (WCAG AA)
+- Non-text contrast: At least 3:1 (WCAG AA)
 
-**键盘导航**
-- Tab 顺序：符合视觉流和逻辑流
-- 焦点可见：清晰的焦点指示器
-- 快捷键：定义并文档化
+**Keyboard Navigation**
+- Tab order: Follows visual and logical flow
+- Focus visible: Clear focus indicator
+- Keyboard shortcuts: Defined and documented
 
-**屏幕阅读器**
-- 语义化 HTML
-- ARIA 标签
-- Alt 文本
+**Screen Reader**
+- Semantic HTML
+- ARIA labels
+- Alt text
 
-## 8. 待验证假设
-- 假设1：... → 验证方式/指标/负责人/时间
+## 8. Assumptions to Validate
+- Assumption 1: ... → Validation method/Metrics/Owner/Time
 
-## 9. 变更记录
-仅在发生变更时记录，未变更无需填写。
-| 版本 | 日期 | 变更内容 | 负责人 |
+## 9. Change Log
+Only record when changes occur. No entry if unchanged.
+| Version | Date | Changes | Owner |
 |---------|------|---------|-------|
-| v0.1 |  | 初版 |  |
+| v0.1 |  | Initial |  |
 ```
+
+## Template Usage Guidelines
+
+1. **Feature naming:** Use English for directory names (e.g., `user-authentication`, `dashboard-feature`)
+2. **Language:** Template structure is in English, but fill content in **Chinese (Simplified)**
+3. **Completeness:** Fill all sections, do not skip
+4. **Updates:** Keep this file synchronized with any changes

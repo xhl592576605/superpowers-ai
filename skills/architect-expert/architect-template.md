@@ -1,434 +1,443 @@
-# ARCHITECT Markdown 模板
+# ARCHITECT Markdown Template
 
-生成系统架构文档时使用此模板。
+Use this template when generating system architecture documents.
 
-复制此结构并填写所有章节。不要跳过任何章节。
+Copy this structure and fill in all sections. Do not skip any sections.
+
+**IMPORTANT:** This template is in English, but actual generated documents should be in **Chinese (Simplified)** per user requirements.
 
 ```markdown
-# 系统架构文档（ARCHITECT）
+# System Architecture Document (ARCHITECT)
 
-> 本次功能/模块名称：{功能名称}
-> 保存路径：.claude/superpowers/plan/change/{feature}/ARCHITECT.md（{feature} 使用英文命名）
-> 关联文档：.claude/superpowers/plan/change/{feature}/PRD.md
-> 关联文档：.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md
-> 后续改动必须同步更新该文件
+> Feature/Module: {feature name}
+> Path: `.claude/superpowers/plan/change/{feature}/ARCHITECT.md` (use English for {feature})
+> Related document: `.claude/superpowers/plan/change/{feature}/PRD.md`
+> Related document: `.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md`
+> Any changes must update this file synchronously
 
-## 1. 架构概述
+## 1. Architecture Overview
 
-### 1.1 目标与范围
-- 功能名称：
-- 核心目标：
-- 范围边界：
-- 本期不包含：
+### 1.1 Goals and Scope
+- Feature name:
+- Core objectives:
+- Scope boundaries:
+- Out of scope for this iteration:
 
-### 1.2 关键约束
-- 时间约束：
-- 资源约束：
-- 技术约束：
-- 合规/安全约束：
-- 平台约束：
+### 1.2 Key Constraints
+- Time constraints:
+- Resource constraints:
+- Technical constraints:
+- Compliance/Security constraints:
+- Platform constraints:
 
-### 1.3 成功指标
-- 性能指标：
-- 可用性指标：
-- 业务指标：
+### 1.3 Success Metrics
+- Performance metrics:
+- Availability metrics:
+- Business metrics:
 
-## 2. 架构原则与质量属性
+## 2. Architecture Principles and Quality Attributes
 
-### 2.1 架构原则
-- 原则1：
-- 原则2：
-- 原则3：
+### 2.1 Architecture Principles
+- Principle 1:
+- Principle 2:
+- Principle 3:
 
-### 2.2 质量属性
-| 属性 | 目标 | 验证方式 |
-|------|------|----------|
-| 可靠性 |  |  |
-| 性能 |  |  |
-| 安全/合规 |  |  |
-| 可扩展性 |  |  |
-| 可观测性 |  |  |
+### 2.2 Quality Attributes
+| Attribute | Target | Validation Method |
+|-----------|--------|-------------------|
+| Reliability |  |  |
+| Performance |  |  |
+| Security/Compliance |  |  |
+| Scalability |  |  |
+| Observability |  |  |
 
-## 3. 系统分层与模块边界
+## 3. System Layering and Module Boundaries
 
-### 3.1 分层架构
+### 3.1 Layered Architecture
 
 ```
 ┌─────────────────────────────────────┐
-│       表现层 (Presentation)         │
-│  Web / Mobile / API Gateway         │
+│       Presentation Layer             │
+│  Web / Mobile / API Gateway          │
 └─────────────────────────────────────┘
               ↓
 ┌─────────────────────────────────────┐
-│         应用层 (Application)          │
-│   业务逻辑 / 编排 / 工作流            │
+│         Application Layer            │
+│   Business Logic / Orchestration     │
 └─────────────────────────────────────┘
               ↓
 ┌─────────────────────────────────────┐
-│          领域层 (Domain)             │
-│    核心业务模型 / 领域服务             │
+│            Domain Layer              │
+│    Core Business Models / Services   │
 └─────────────────────────────────────┘
               ↓
 ┌─────────────────────────────────────┐
-│       基础设施层 (Infrastructure)     │
-│  数据访问 / 外部集成 / 通用服务        │
+│       Infrastructure Layer           │
+│  Data Access / External Integration  │
 └─────────────────────────────────────┘
 ```
 
-### 3.2 模块清单与职责
+### 3.2 Module Inventory and Responsibilities
 
-| 模块名称 | 职责 | 主要接口 | 依赖 |
-|---------|------|----------|------|
-| 模块A |  |  |  |
-| 模块B |  |  |  |
+| Module Name | Responsibilities | Main Interfaces | Dependencies |
+|-------------|-------------------|------------------|--------------|
+| Module A |  |  |  |
+| Module B |  |  |  |
 
-### 3.3 模块依赖关系
+### 3.3 Module Dependencies
 
 ```
-模块A ──→ 模块B ──→ 模块C
+Module A ──→ Module B ──→ Module C
   ↑         ↓
   └─────────┘
 ```
 
-## 4. 核心数据模型与数据流
+## 4. Core Data Models and Data Flow
 
-### 4.1 关键实体/领域模型
+### 4.1 Key Entities/Domain Models
 
-| 实体名称 | 核心字段 | 关系 | 生命周期 |
-|---------|---------|------|----------|
-| 实体A |  |  |  |
-| 实体B |  |  |  |
+| Entity Name | Core Fields | Relationships | Lifecycle |
+|-------------|-------------|----------------|-----------|
+| Entity A |  |  |  |
+| Entity B |  |  |  |
 
-### 4.2 关键流程数据流（按功能/页面）
+### 4.2 Key Flow Data Flow (by Feature/Page)
 
-**功能/页面：{功能名称}**
-- 输入数据：
-- 处理逻辑：
-- 输出数据：
-- 状态变化：
+**Feature/Page: {Feature name}**
+- Input data:
+- Processing logic:
+- Output data:
+- State changes:
 
-### 4.3 状态变化/一致性策略
-- 状态定义：
-- 状态转换规则：
-- 一致性保证：
-- 事务边界：
+### 4.3 State Change/Consistency Strategy
+- State definition:
+- State transition rules:
+- Consistency guarantees:
+- Transaction boundaries:
 
-## 5. 接口与集成
+## 5. Interfaces and Integration
 
-### 5.1 内部接口
+### 5.1 Internal Interfaces
 
-| 接口名称 | 提供方 | 消费方 | 协议 | 同步/异步 |
-|---------|--------|--------|------|-----------|
+| Interface Name | Provider | Consumer | Protocol | Sync/Async |
+|----------------|----------|----------|----------|------------|
 |  |  |  |  |  |
 
-### 5.2 外部系统/第三方集成
+### 5.2 External Systems/Third-Party Integration
 
-| 系统名称 | 用途 | 集成方式 | 失败处理 |
-|---------|------|----------|----------|
+| System Name | Purpose | Integration Method | Failure Handling |
+|-------------|---------|-------------------|------------------|
 |  |  |  |  |
 
-### 5.3 同步/异步机制与失败重试
-- 同步场景：
-- 异步场景：
-- 重试策略：
-- 幂等性保证：
+### 5.3 Sync/Async Mechanisms and Failure Retry
+- Sync scenarios:
+- Async scenarios:
+- Retry strategy:
+- Idempotency guarantees:
 
-## 6. 功能点/页面级架构设计
+## 6. Feature/Page-Level Architecture Design
 
-> 逐条对应 PRD 功能清单与 DESIGN_SPEC 页面清单
+> Map directly to PRD feature list and DESIGN_SPEC page list
 
-### 6.1 {功能点/页面名称}
+### 6.1 {Feature/Page Name}
 
-**目标与范围**
-- 功能描述：
-- 范围边界：
+**Goals and Scope**
+- Feature description:
+- Scope boundaries:
 
-**入口与触发**
-- 用户入口：
-- 触发条件：
-- 前置条件：
+**Entry and Trigger**
+- User entry points:
+- Trigger conditions:
+- Prerequisites:
 
-**关键流程（含异常）**
-- 主流程：
-- 异常流程：
-- 边界条件：
+**Key Flows (including exceptions)**
+- Main flow:
+- Exception flows:
+- Boundary conditions:
 
-**关键数据与状态**
-- 输入数据：
-- 输出数据：
-- 状态变化：
+**Key Data and State**
+- Input data:
+- Output data:
+- State changes:
 
-**涉及模块/组件**
-- 前端组件：
-- 后端服务：
-- 数据模型：
+**Involved Modules/Components**
+- Frontend components:
+- Backend services:
+- Data models:
 
-**接口与依赖**
-- 内部接口：
-- 外部依赖：
-- 依赖顺序：
+**Interfaces and Dependencies**
+- Internal interfaces:
+- External dependencies:
+- Dependency order:
 
-**权限与安全**
-- 访问控制：
-- 数据权限：
-- 安全要求：
+**Permissions and Security**
+- Access control:
+- Data permissions:
+- Security requirements:
 
-**性能与边界**
-- 性能要求：
-- 容量限制：
-- 边界处理：
+**Performance and Boundaries**
+- Performance requirements:
+- Capacity limits:
+- Boundary handling:
 
-**专家技能指派与产出物**
-- 前端：[技能名称] → 产出物：[具体交付]
-- 后端：[技能名称] → 产出物：[具体交付]
-- 多平台：[技能名称] → 产出物：[具体交付]
+**Expert Skill Assignment and Deliverables**
+- Frontend: [Skill name] → Deliverables: [Specific deliverables]
+- Backend: [Skill name] → Deliverables: [Specific deliverables]
+- Multi-platform: [Skill name] → Deliverables: [Specific deliverables]
 
-### 6.2 {功能点/页面名称}
+### 6.2 {Feature/Page Name}
 
-[重复上述结构]
+[Repeat above structure]
 
-## 7. 系统结构与数据流设计
+## 7. System Structure and Data Flow Design
 
-### 7.1 系统结构图
+### 7.1 System Structure Diagram
 
 ```
-[根据具体系统绘制架构图]
+[Draw architecture diagram based on specific system]
 ```
 
-### 7.2 关键数据流
+### 7.2 Key Data Flows
 
-**数据流1：{流程名称}**
-- 起点：
-- 终点：
-- 中间处理：
-- 数据转换：
+**Data Flow 1: {Flow name}**
+- Origin:
+- Destination:
+- Intermediate processing:
+- Data transformations:
 
-## 8. 技术选型
+## 8. Technology Selection
 
-### 8.1 前端
-| 技术 | 版本 | 用途 | 替代方案 |
-|------|------|------|----------|
+### 8.1 Frontend
+| Technology | Version | Purpose | Alternatives |
+|------------|---------|---------|--------------|
 |  |  |  |  |
 
-### 8.2 后端
-| 技术 | 版本 | 用途 | 替代方案 |
-|------|------|------|----------|
+### 8.2 Backend
+| Technology | Version | Purpose | Alternatives |
+|------------|---------|---------|--------------|
 |  |  |  |  |
 
-### 8.3 数据与缓存
-| 技术 | 版本 | 用途 | 替代方案 |
-|------|------|------|----------|
+### 8.3 Data and Cache
+| Technology | Version | Purpose | Alternatives |
+|------------|---------|---------|--------------|
 |  |  |  |  |
 
-### 8.4 基础设施/部署
-| 技术 | 版本 | 用途 | 替代方案 |
-|------|------|------|----------|
+### 8.4 Infrastructure/Deployment
+| Technology | Version | Purpose | Alternatives |
+|------------|---------|---------|--------------|
 |  |  |  |  |
 
-### 8.5 选型理由与替代方案
-- 选型理由：
-- 替代方案考虑：
-- 风险评估：
+### 8.5 Selection Rationale and Alternatives
+- Selection rationale:
+- Alternative considerations:
+- Risk assessment:
 
-## 9. 非功能需求
+## 9. Non-Functional Requirements
 
-### 9.1 性能指标
-| 指标 | 目标 | 测量方式 |
-|------|------|----------|
-| 响应时间 |  |  |
-| 吞吐量 |  |  |
-| 并发数 |  |  |
+### 9.1 Performance Metrics
+| Metric | Target | Measurement Method |
+|--------|--------|-------------------|
+| Response time |  |  |
+| Throughput |  |  |
+| Concurrency |  |  |
 
-### 9.2 安全与权限
-- 身份认证：
-- 授权机制：
-- 数据加密：
-- 审计日志：
+### 9.2 Security and Permissions
+- Authentication:
+- Authorization mechanism:
+- Data encryption:
+- Audit logs:
 
-### 9.3 可用性与容灾
-- 可用性目标：
-- 容灾策略：
-- 降级方案：
-- 恢复机制：
+### 9.3 Availability and Disaster Recovery
+- Availability target:
+- Disaster recovery strategy:
+- Degradation plan:
+- Recovery mechanism:
 
-### 9.4 监控与告警
-- 监控指标：
-- 告警规则：
-- 日志策略：
+### 9.4 Monitoring and Alerting
+- Monitoring metrics:
+- Alerting rules:
+- Logging strategy:
 
-## 10. 风险与权衡
+## 10. Risks and Trade-offs
 
-### 10.1 风险清单
+### 10.1 Risk List
 
-| 风险 | 概率 | 影响 | 等级 | 应对策略 |
-|------|------|------|------|----------|
+| Risk | Probability | Impact | Level | Mitigation Strategy |
+|------|-------------|--------|-------|---------------------|
 |  |  |  |  |  |
 
-### 10.2 技术权衡
-| 决策 | 优势 | 劣势 | 缓解措施 |
-|------|------|------|----------|
+### 10.2 Technical Trade-offs
+| Decision | Advantages | Disadvantages | Mitigation |
+|----------|------------|----------------|------------|
 |  |  |  |  |
 
-## 11. 研发分工与里程碑
+## 11. Development Division and Milestones
 
-### 11.1 角色划分与任务清单
+### 11.1 Role Division and Task List
 
-**前端开发**
-| 任务 | 描述 | 依赖 | 估时 |
-|------|------|------|------|
+**Frontend Development**
+| Task | Description | Dependencies | Estimate |
+|------|-------------|---------------|----------|
 |  |  |  |  |
 
-**后端开发**
-| 任务 | 描述 | 依赖 | 估时 |
-|------|------|------|------|
+**Backend Development**
+| Task | Description | Dependencies | Estimate |
+|------|-------------|---------------|----------|
 |  |  |  |  |
 
-**数据工程**
-| 任务 | 描述 | 依赖 | 估时 |
-|------|------|------|------|
+**Data Engineering**
+| Task | Description | Dependencies | Estimate |
+|------|-------------|---------------|----------|
 |  |  |  |  |
 
-**基础设施**
-| 任务 | 描述 | 依赖 | 估时 |
-|------|------|------|------|
+**Infrastructure**
+| Task | Description | Dependencies | Estimate |
+|------|-------------|---------------|----------|
 |  |  |  |  |
 
-**测试**
-| 任务 | 描述 | 依赖 | 估时 |
-|------|------|------|------|
+**Testing**
+| Task | Description | Dependencies | Estimate |
+|------|-------------|---------------|----------|
 |  |  |  |  |
 
-### 11.2 技能指派与交付物清单
+### 11.2 Skill Assignment and Deliverables List
 
-**指派格式说明**
+**Assignment Format Explanation**
 
-每项功能点的指派需要明确：
-1. **类型**：Sub-agent / Skill / Main Agent
-2. **位置**：用户级 ~/.claude/ 或 项目级 {project}/
-3. **名称**：具体的 sub-agent 或 skill 名称
-4. **产出物**：具体需要交付的文档/代码
+Each feature assignment needs to specify:
+1. **Type**: Sub-agent / Skill / Main Agent
+2. **Location**: User-level ~/.claude/ or Project-level {project}/
+3. **Name**: Specific sub-agent or skill name
+4. **Deliverables**: Specific documents/code to deliver
 
-**按功能点分配**
+**Assignment by Feature**
 
-| 功能点 | 类型 | 位置 | 名称 | 交付物 |
-|--------|------|------|------|--------|
-| 功能A | Skill | 项目级 | frontend-developer-expert | React 组件、样式、路由配置 |
-| 功能B | Sub-agent | 项目级 | code-reviewer | 代码审查报告 |
-| 功能C | Main Agent | - | 主代理 | API 设计、数据模型 |
+| Feature | Type | Location | Name | Deliverables |
+|---------|------|----------|------|--------------|
+| Feature A | Skill | Project-level | frontend-developer-expert | React components, styles, routing |
+| Feature B | Sub-agent | Project-level | code-reviewer | Code review report |
+| Feature C | Main Agent | - | Main agent | API design, data models |
 
-**搜索结果记录模板**
+**Search Result Record Template**
 
 ```
-功能：[功能名称]
-角色：[前端/后端/多平台等]
+Feature: [Feature name]
+Role: [Frontend/Backend/Multi-platform, etc.]
 
-搜索记录：
-Step 1: ~/.claude/agents/*{role}*.md → [结果]
-Step 2: agents/*{role}*.md → [结果]
-Step 3: ~/.claude/skills/*{role}*/SKILL.md → [结果]
-Step 4: skills/*{role}*/SKILL.md → [结果]
+Search record:
+Step 1: ~/.claude/agents/*{role}*.md → [Result]
+Step 2: agents/*{role}*.md → [Result]
+Step 3: ~/.claude/skills/*{role}*/SKILL.md → [Result]
+Step 4: skills/*{role}*/SKILL.md → [Result]
 
-指派结果：
-- 类型：[Sub-agent / Skill / Main Agent]
-- 位置：[用户级 / 项目级 / -]
-- 名称：[具体名称]
-- 交付物：[具体交付内容]
+Assignment result:
+- Type: [Sub-agent / Skill / Main Agent]
+- Location: [User-level / Project-level / -]
+- Name: [Specific name]
+- Deliverables: [Specific deliverable content]
 ```
 
-**示例**
+**Examples**
 
 ```
-功能：用户登录页面
-角色：前端开发
+Feature: User login page
+Role: Frontend development
 
-搜索记录：
-Step 1: ~/.claude/agents/*frontend*.md → 无匹配
-Step 2: agents/*frontend*.md → 无匹配
-Step 3: ~/.claude/skills/*frontend*.md → 无匹配
+Search record:
+Step 1: ~/.claude/agents/*frontend*.md → No match
+Step 2: agents/*frontend*.md → No match
+Step 3: ~/.claude/skills/*frontend*.md → No match
 Step 4: skills/*frontend*.md → frontend-developer-expert
 
-指派结果：
-- 类型：Skill
-- 位置：项目级
-- 名称：frontend-developer-expert
-- 交付物：
-  * 登录页面组件 (LoginForm.tsx)
-  * 表单验证逻辑
-  * API 集成代码
-  * 单元测试文件
+Assignment result:
+- Type: Skill
+- Location: Project-level
+- Name: frontend-developer-expert
+- Deliverables:
+  * Login page component (LoginForm.tsx)
+  * Form validation logic
+  * API integration code
+  * Unit test files
 ```
 
 ```
-功能：代码审查
-角色：代码审查员
+Feature: Code review
+Role: Code reviewer
 
-搜索记录：
-Step 1: ~/.claude/agents/*review*.md → 无匹配
+Search record:
+Step 1: ~/.claude/agents/*review*.md → No match
 Step 2: agents/*review*.md → code-reviewer.md
 
-指派结果：
-- 类型：Sub-agent
-- 位置：项目级
-- 名称：code-reviewer
-- 交付物：
-  * 代码审查报告
-  * 问题清单
-  * 改进建议
+Assignment result:
+- Type: Sub-agent
+- Location: Project-level
+- Name: code-reviewer
+- Deliverables:
+  * Code review report
+  * Issue list
+  * Improvement suggestions
 ```
 
 ```
-功能：数据库设计
-角色：数据库工程师
+Feature: Database design
+Role: Database engineer
 
-搜索记录：
-Step 1: ~/.claude/agents/*database*.md → 无匹配
-Step 2: agents/*database*.md → 无匹配
-Step 3: ~/.claude/skills/*database*.md → 无匹配
-Step 4: skills/*database*.md → 无匹配
+Search record:
+Step 1: ~/.claude/agents/*database*.md → No match
+Step 2: agents/*database*.md → No match
+Step 3: ~/.claude/skills/*database*.md → No match
+Step 4: skills/*database*.md → No match
 
-指派结果：
-- 类型：Main Agent
-- 位置：-
-- 名称：主代理
-- 交付物：
-  * 数据表设计 (DDL)
-  * 索引策略
-  * 迁移脚本
+Assignment result:
+- Type: Main Agent
+- Location: -
+- Name: Main agent
+- Deliverables:
+  * Data table design (DDL)
+  * Index strategy
+  * Migration scripts
 ```
 
-**完整功能点指派表**
+**Complete Feature Assignment Table**
 
-| 功能点 | 角色 | 类型 | 位置 | 名称 | 交付物 |
-|--------|------|------|------|------|--------|
-| 用户登录 | 前端 | Skill | 项目级 | frontend-developer-expert | LoginForm.tsx, 验证逻辑, API 调用 |
-| 用户登录 | 后端 | Main Agent | - | 主代理 | JWT 认证, 密码哈希, API 端点 |
-| 数据表设计 | 数据库 | Main Agent | - | 主代理 | DDL, 索引, 迁移脚本 |
-| 代码审查 | 审查 | Sub-agent | 项目级 | code-reviewer | 审查报告 |
+| Feature | Role | Type | Location | Name | Deliverables |
+|---------|------|------|----------|------|--------------|
+| User login | Frontend | Skill | Project-level | frontend-developer-expert | LoginForm.tsx, validation logic, API calls |
+| User login | Backend | Main Agent | - | Main agent | JWT auth, password hash, API endpoints |
+| Data table design | Database | Main Agent | - | Main agent | DDL, indexes, migration scripts |
+| Code review | Reviewer | Sub-agent | Project-level | code-reviewer | Review report |
 
-### 11.3 关键依赖
+### 11.3 Key Dependencies
 
 ```
-任务A ──→ 任务B ──→ 任务C
+Task A ──→ Task B ──→ Task C
   ↑         ↓
   └─────────┘
 
-关键路径：A → B → C
+Critical path: A → B → C
 ```
 
-### 11.4 里程碑与交付物
+### 11.4 Milestones and Deliverables
 
-| 里程碑 | 时间点 | 交付物 | 验收标准 |
-|--------|--------|--------|----------|
+| Milestone | Time Point | Deliverables | Acceptance Criteria |
+|-----------|------------|--------------|---------------------|
 | M1 |  |  |  |
 | M2 |  |  |  |
 | M3 |  |  |  |
 
-## 12. 假设与验证计划
-- 假设1：... → 验证方式/指标/负责人/时间
+## 12. Assumptions and Validation Plan
+- Assumption 1: ... → Validation method/Metrics/Owner/Time
 
-## 13. 变更记录
-仅在发生变更时记录，未变更无需填写。
-| 版本 | 日期 | 变更内容 | 负责人 |
+## 13. Change Log
+Only record when changes occur. No entry if unchanged.
+| Version | Date | Changes | Owner |
 |---------|------|---------|-------|
-| v0.1 |  | 初版 |  |
+| v0.1 |  | Initial |  |
 ```
+
+## Template Usage Guidelines
+
+1. **Feature naming:** Use English for directory names (e.g., `user-authentication`, `dashboard-feature`)
+2. **Language:** Template structure is in English, but fill content in **Chinese (Simplified)**
+3. **Completeness:** Fill all sections, do not skip
+4. **Updates:** Keep this file synchronized with any changes

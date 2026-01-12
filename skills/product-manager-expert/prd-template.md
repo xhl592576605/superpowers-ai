@@ -1,182 +1,191 @@
-# PRD Markdown 模板
+# PRD Markdown Template
 
-生成 PRD 文档时使用此模板。
+Use this template when generating PRD documents.
 
-复制此结构并填写所有章节。不要跳过任何章节。
+Copy this structure and fill in all sections. Do not skip any sections.
+
+**IMPORTANT:** This template is in English, but actual generated documents should be in **Chinese (Simplified)** per user requirements.
 
 ```markdown
-# 产品需求文档（Product Requirements Document）
+# Product Requirements Document (PRD)
 
-> 本次功能/模块名称：{功能名称}
-> 保存路径：.claude/superpowers/plan/change/{feature}/PRD.md（{feature} 使用英文命名）
-> UI 设计规范路径：.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md（同一功能文件夹）
-> 后续改动必须同步更新该文件
+> Feature/Module: {feature name}
+> Path: `.claude/superpowers/plan/change/{feature}/PRD.md` (use English for {feature})
+> UI Design Spec Path: `.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md` (same feature folder)
+> Any changes must update this file synchronously
 
-## 1. 产品概述
+## 1. Product Overview
 
-### 1.1 产品名称
-- {产品名称}
+### 1.1 Product Name
+- {Product Name}
 
-### 1.2 产品定位 / 价值主张
-- 一句话定位：
-- 解决的问题：
-- 核心价值：
-- 目标场景：
+### 1.2 Product Positioning / Value Proposition
+- One-line positioning:
+- Problem solved:
+- Core value:
+- Target scenarios:
 
-### 1.3 背景与目标
-- 背景描述：
-- 业务目标：
-- 成功指标（可量化）：
-- 业务现状（数据/事实）：
-- 变更动因（政策/市场/技术）：
+### 1.3 Background and Objectives
+- Background description:
+- Business objectives:
+- Success metrics (quantifiable):
+- Business status (data/facts):
+- Change drivers (policy/market/technology):
 
-### 1.4 目标用户
-- 核心用户：
-- 次要用户：
-- 决策/付费方（如有）：
-- 关键影响者：
+### 1.4 Target Users
+- Core users:
+- Secondary users:
+- Decision makers/payers (if applicable):
+- Key influencers:
 
-### 1.5 产品目标（阶段性）
-- P0（上线/验证）：
-- P1（增长/优化）：
-- P2（规模化）：
+### 1.5 Product Objectives (Phased)
+- P0 (Launch/Validation):
+- P1 (Growth/Optimization):
+- P2 (Scale):
 
-### 1.6 商业模式（如适用）
-- 收费方式：
-- 定价区间：
-- 转化路径：
-- 核心增长杠杆：
+### 1.6 Business Model (if applicable)
+- Revenue model:
+- Pricing range:
+- Conversion path:
+- Core growth levers:
 
-## 2. 市场与用户分析
+## 2. Market and User Analysis
 
-### 2.1 市场分析
-- 市场规模/趋势（注明来源或假设）：
-- 关键驱动因素：
-- 约束与风险：
-- 政策/合规要点：
+### 2.1 Market Analysis
+- Market size/trends (cite sources or assumptions):
+- Key drivers:
+- Constraints and risks:
+- Policy/compliance points:
 
-### 2.2 竞品分析
-| 竞品 | 核心优势 | 主要劣势 | 差异化机会 |
-| --- | --- | --- | --- |
-| 竞品A |  |  |  |
-| 竞品B |  |  |  |
+### 2.2 Competitive Analysis
+| Competitor | Core Strengths | Main Weaknesses | Differentiation Opportunities |
+|-----------|---------------|-----------------|------------------------------|
+| Competitor A |  |  |  |
+| Competitor B |  |  |  |
 
-### 2.3 用户分析
+### 2.3 User Analysis
 
-**用户分层概览**
-| 用户类型 | 典型角色 | 使用频率 | 付费意愿 | 关键诉求 |
-| --- | --- | --- | --- | --- |
-| 核心用户 |  |  |  |  |
-| 次要用户 |  |  |  |  |
+**User Segment Overview**
+| User Type | Typical Role | Usage Frequency | Willingness to Pay | Key Needs |
+|-----------|-------------|-----------------|-------------------|-----------|
+| Core users |  |  |  |  |
+| Secondary users |  |  |  |  |
 
-**用户画像（核心用户）**
-- 基本属性：
-- 职业/角色：
-- 收入与预算：
-- 行为习惯：
-- 核心需求：
+**User Persona (Core Users)**
+- Basic attributes:
+- Occupation/Role:
+- Income and budget:
+- Behavioral habits:
+- Core needs:
 
-**用户画像（次要用户）**
-- 基本属性：
-- 角色与诉求：
+**User Persona (Secondary Users)**
+- Basic attributes:
+- Role and needs:
 
-**用户痛点（核心用户）**
+**User Pain Points (Core Users)**
 1.
 2.
 3.
 
-**用户痛点（次要用户）**
+**User Pain Points (Secondary Users)**
 1.
 2.
 
-**用户旅程/触点**
-- 触点1：
-- 触点2：
-- 触点3：
+**User Journey/Touchpoints**
+- Touchpoint 1:
+- Touchpoint 2:
+- Touchpoint 3:
 
-**痛点-原因-机会表**
-| 痛点 | 关键原因 | 机会点 |
-| --- | --- | --- |
+**Pain Point - Cause - Opportunity Table**
+| Pain Point | Key Cause | Opportunity |
+|------------|-----------|-------------|
 |  |  |  |
 
-## 3. 功能架构
+## 3. Feature Architecture
 
-### 3.1 产品架构（树状结构）
+### 3.1 Product Architecture (Tree Structure)
 ```
-{产品/系统}
-├─ 模块A
-│  ├─ 子功能A1
-│  └─ 子功能A2
-├─ 模块B
-│  └─ 子功能B1
-└─ 模块C
+{Product/System}
+├─ Module A
+│  ├─ Sub-feature A1
+│  └─ Sub-feature A2
+├─ Module B
+│  └─ Sub-feature B1
+└─ Module C
 ```
 
-### 3.2 信息架构 / 页面清单
-| 页面名称 | 入口位置 | 说明 | 角色可见 | 优先级 |
-| --- | --- | --- | --- | --- |
-| 首页 | 底部Tab/入口按钮 |  | 全部 | P0 |
-| 列表页 | 首页/搜索 |  | 核心用户 | P1 |
+### 3.2 Information Architecture / Page Inventory
+| Page Name | Entry Location | Description | Role Visibility | Priority |
+|-----------|----------------|-------------|------------------|----------|
+| Home | Bottom Tab/Entry Button |  | All | P0 |
+| List Page | Home/Search |  | Core Users | P1 |
 
-### 3.3 导航结构（如适用）
-- 底部 Tab：
-- 侧边栏/二级入口：
+### 3.3 Navigation Structure (if applicable)
+- Bottom Tab:
+- Sidebar/Secondary Entry:
 
-## 4. 核心功能定义
+## 4. Core Feature Definitions
 
-### 4.1 MVP 必须功能（P0）
-| 功能名称 | 功能描述 | 用户价值 | 业务价值 | 业务规则 | 异常/边界 | 验收标准 |
-| --- | --- | --- | --- | --- | --- | --- |
+### 4.1 MVP Must-Have Features (P0)
+| Feature Name | Feature Description | User Value | Business Value | Business Rules | Exception/Boundary | Acceptance Criteria |
+|--------------|---------------------|------------|----------------|----------------|-------------------|-------------------|
 |  |  |  |  |  |  |  |
 
-### 4.2 重要功能（P1）
-| 功能名称 | 功能描述 | 用户价值 | 业务价值 | 业务规则 | 异常/边界 | 验收标准 |
-| --- | --- | --- | --- | --- | --- | --- |
+### 4.2 Important Features (P1)
+| Feature Name | Feature Description | User Value | Business Value | Business Rules | Exception/Boundary | Acceptance Criteria |
+|--------------|---------------------|------------|----------------|----------------|-------------------|-------------------|
 |  |  |  |  |  |  |  |
 
-### 4.3 可选功能（P2）
-| 功能名称 | 功能描述 | 用户价值 | 业务价值 | 业务规则 | 异常/边界 | 验收标准 |
-| --- | --- | --- | --- | --- | --- | --- |
+### 4.3 Optional Features (P2)
+| Feature Name | Feature Description | User Value | Business Value | Business Rules | Exception/Boundary | Acceptance Criteria |
+|--------------|---------------------|------------|----------------|----------------|-------------------|-------------------|
 |  |  |  |  |  |  |  |
 
-## 5. 用户流程与原型说明
-- 主流程（分步）：
-- 异常流程：
-- 关键页面/原型说明：
-- 入口/触发条件：
-- 输出结果/状态变化：
+## 5. User Flow and Prototype Notes
+- Main flow (step by step):
+- Exception flow:
+- Key pages/prototype notes:
+- Entry/Trigger conditions:
+- Output results/State changes:
 
-## 6. 非功能需求
-- 性能（P95/并发/稳定性）：
-- 安全/合规：
-- 可用性/可访问性：
-- 可靠性（SLA/可用率）：
-- 隐私/数据保护：
+## 6. Non-Functional Requirements
+- Performance (P95/Concurrency/Stability):
+- Security/Compliance:
+- Usability/Accessibility:
+- Reliability (SLA/Uptime):
+- Privacy/Data Protection:
 
-## 7. 验收标准（关键）
-- [功能]：验收场景 + 预期结果 + 边界条件
-- 量化指标（响应时间、成功率等）：
+## 7. Acceptance Criteria (Key)
+- [Feature]: Acceptance scenario + Expected result + Boundary conditions
+- Quantitative metrics (response time, success rate, etc.):
 
-**验收场景表**
-| 场景 | 步骤 | 预期结果 |
-| --- | --- | --- |
+**Acceptance Scenario Table**
+| Scenario | Steps | Expected Result |
+|----------|-------|-----------------|
 |  |  |  |
 
-## 8. 风险与依赖
-- 风险清单（影响/应对/等级）：
-- 外部依赖（系统/接口/数据）：
+## 8. Risks and Dependencies
+- Risk list (Impact/Mitigation/Level):
+- External dependencies (System/API/Data):
 
-## 9. 资源与里程碑
-- 资源需求（人力/技术/数据/预算）：
-- 里程碑（时间点/交付物）：
-- 关键里程碑验收点：
+## 9. Resources and Milestones
+- Resource requirements (People/Technology/Data/Budget):
+- Milestones (Time points/Deliverables):
+- Key milestone acceptance points:
 
-## 10. 假设与验证计划
-- 假设1：... → 验证方式/指标/负责人/时间
+## 10. Assumptions and Validation Plan
+- Assumption 1: ... → Validation method/Metrics/Owner/Time
 
-## 11. 变更记录 / 版本号
-仅在发生变更时记录，未变更无需填写。
-| 版本 | 日期 | 变更内容 | 负责人 |
-| --- | --- | --- | --- |
-| v0.1 |  | 初版 |  |
+## 11. Change Log / Version
+Only record when changes occur. No entry if unchanged.
+| Version | Date | Changes | Owner |
+|---------|------|---------|-------|
+| v0.1 |  | Initial |  |
 ```
+
+## Template Usage Guidelines
+
+1. **Feature naming:** Use English for directory names (e.g., `user-authentication`, `dashboard-feature`)
+2. **Language:** Template structure is in English, but fill content in **Chinese (Simplified)**
+3. **Completeness:** Fill all sections, do not skip
+4. **Updates:** Keep this file synchronized with any changes
