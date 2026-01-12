@@ -15,7 +15,11 @@ Generate executable design specifications based on PRD and design preferences: c
 
 **During execution, MUST use superpowers:brainstorming to explore all relevant points until requirements are fully understood.** If brainstorming unavailable, use AskUserQuestion tool to continue probing.
 
-**Optional enhancement:** If available, use "ui-ux-pro-max" skill for detailed design research and analysis to supplement design-expert in generating comprehensive design spec.
+**CRITICAL: Design research MUST use ui-ux-pro-max skill.** The ui-ux-pro-max skill is a specialized design research subagent that:
+- Conducts comprehensive design trend research
+- Analyzes competitor design patterns
+- Returns structured research findings for design-expert to use
+- See "ui-ux-pro-max Integration" section for detailed invocation protocol
 
 **CRITICAL: PRD must exist before starting design work.** Use superpowers:product-manager-expert first if PRD doesn't exist.
 
@@ -30,6 +34,113 @@ Generate executable design specifications based on PRD and design preferences: c
 - **Interaction guidelines** - Define key flows, states, and feedback rules to avoid ambiguity
 - **Collaboration delivery** - Deliver executable specs and component inventory for developers
 
+## ui-ux-pro-max Integration
+
+### Overview
+
+The `ui-ux-pro-max` skill is a specialized design research subagent. It MUST be invoked during Step 2 (Design Trend Research) to gather comprehensive design trends and competitor analysis.
+
+### When to Invoke ui-ux-pro-max
+
+```
+design-expert (Step 2: Design Trend Research)
+       ↓
+    [Invoke ui-ux-pro-max skill]
+       ↓
+ui-ux-pro-max conducts research
+       ↓
+    [Returns structured findings]
+       ↓
+design-expert synthesizes findings into DESIGN_SPEC
+```
+
+### Invocation Protocol
+
+**Step 1: Prepare Research Brief**
+Before invoking ui-ux-pro-max, prepare the following information:
+- Feature/product name
+- Target platform (Web/Mobile/Desktop)
+- Design preferences (style, brand tone, competitor references)
+- Key user scenarios from PRD
+- Specific research questions (e.g., "What are current dashboard design trends?")
+
+**Step 2: Invoke ui-ux-pro-max Skill**
+
+Use the Skill tool to invoke ui-ux-pro-max:
+
+```
+Skill(skill="ui-ux-pro-max")
+```
+
+Then provide the research brief:
+
+```
+Please conduct design research for:
+
+**Product/Feature:** {feature name}
+**Platform:** {Web/Mobile/Desktop}
+**Design Preferences:** {style/brand/competitors}
+**Key Scenarios:** {from PRD}
+
+Research focus:
+1. Industry design trends for this type of product
+2. Competitor design analysis (visual style, layout patterns, interactions)
+3. Borrowable design patterns and anti-patterns
+4. Recommendations for visual system direction
+
+Return structured findings I can use in DESIGN_SPEC.
+```
+
+**Step 3: Receive Research Findings**
+
+ui-ux-pro-max will return structured findings including:
+- Industry trends (with data/support)
+- Competitor analysis (visual style, layout, interactions)
+- Design patterns worth borrowing
+- Recommended design direction
+- Potential pitfalls to avoid
+
+**Step 4: Synthesize into DESIGN_SPEC**
+
+Use ui-ux-pro-max findings to populate DESIGN_SPEC Section 3 (Design Research):
+- Cite specific trends and patterns
+- Reference competitor examples
+- Justify design direction with research data
+- Document borrowable elements
+
+### Expected Output from ui-ux-pro-max
+
+```markdown
+## Design Research Findings
+
+### Industry Trends
+- Trend 1: [Description] + [Support/Data]
+- Trend 2: [Description] + [Support/Data]
+
+### Competitor Analysis
+| Competitor | Visual Style | Layout Patterns | Interactions | Borrow | Avoid |
+|------------|--------------|-----------------|--------------|--------|-------|
+| [Name]     | [Description] | [Patterns]     | [Description]| [What] | [What] |
+
+### Design Direction Recommendations
+Based on research, recommended direction:
+- [Direction 1 with rationale]
+- [Direction 2 with rationale]
+- [Direction 3 with rationale]
+
+### Key Design Patterns to Borrow
+- Pattern 1: [Description] → [Usage context]
+- Pattern 2: [Description] → [Usage context]
+```
+
+### Fallback if ui-ux-pro-max Unavailable
+
+If ui-ux-pro-max skill is not available:
+1. **MUST use available web search tools** to conduct design research
+2. Conduct comprehensive research on trends, competitors, and patterns
+3. Document findings in structured format
+4. Note in DESIGN_SPEC: "Research conducted via web search (ui-ux-pro-max unavailable)"
+
 ## The Process
 
 **Step 1: Requirement Analysis**
@@ -39,11 +150,13 @@ Generate executable design specifications based on PRD and design preferences: c
 - Verify PRD exists and is approved
 
 **Step 2: Design Trend Research**
-- MUST use MCP search tools to gather industry trends and competitor design cases
-- Priority: Use `mcp__bing-search__bing_search` or `WebSearch` first
-- If MCP search unavailable, fallback to web_search
-- Identify borrowable visual language, layout patterns, and interaction paradigms
-- Form research conclusions and viable design directions
+- **CRITICAL: MUST invoke ui-ux-pro-max skill** for comprehensive design research
+- See "ui-ux-pro-max Integration" section for detailed invocation protocol
+- Prepare research brief with feature name, platform, design preferences, and key scenarios
+- Invoke ui-ux-pro-max using Skill tool with research brief
+- Receive structured research findings (trends, competitors, patterns, recommendations)
+- Synthesize findings into DESIGN_SPEC Section 3 (Design Research)
+- **Fallback only if ui-ux-pro-max unavailable:** Use any available web search tools to conduct research
 
 **Step 3: Experience Strategy & Visual System**
 - Define information architecture and key user flows
@@ -101,12 +214,14 @@ Generate executable design specifications based on PRD and design preferences: c
 - Ignore technical constraints from PRD
 
 **INSTEAD:**
-- Use MCP search tools (prefer `mcp__bing-search__bing_search` or `WebSearch`) for every DESIGN_SPEC
+- **MUST invoke ui-ux-pro-max skill** for design research in Step 2
+- Follow ui-ux-pro-max Integration protocol for research brief preparation
+- Use ui-ux-pro-max structured findings to populate DESIGN_SPEC Section 3
 - Reference PRD sections explicitly in DESIGN_SPEC
 - Surface scope creep: "This feature isn't in PRD, add it?"
 - Write specific interaction rules with timing/state
 - Include WCAG contrast ratios, keyboard navigation
-- Present 2-3 design direction options
+- Present 2-3 design direction options based on research
 - Define default/hover/disabled/error/focus for all components
 - Check PRD Section 7 for non-functional requirements
 
@@ -119,11 +234,42 @@ User: "Design a dashboard"
    (no research, just opinion)
 ```
 
-**Good: Research-Based**
+**Good: Using ui-ux-pro-max for Research**
 ```
 User: "Design a dashboard"
-✅ "Let me research current dashboard design trends..."
-   [Uses MCP search: mcp__bing-search__bing_search or WebSearch]
+✅ "Let me conduct comprehensive design research using ui-ux-pro-max..."
+
+[Invokes ui-ux-pro-max skill]
+
+Research brief:
+**Product/Feature:** Analytics Dashboard
+**Platform:** Web (desktop-first)
+**Design Preferences:** Clean, data-focused, similar to Linear/Notion
+**Key Scenarios:** Data visualization, report generation, real-time monitoring
+
+[Receives structured findings from ui-ux-pro-max]
+
+Research findings:
+- Industry trends: Card-based layouts (80% adoption), dark mode support (70%),
+  collapsible sidebars (65%), data tables with inline actions (60%)
+- Competitor analysis:
+  * Linear: Minimalist, monochromatic with accent colors, excellent typography hierarchy
+  * Mixpanel: Heavy use of cards, clear data visualization patterns
+  * Tableau: Complex dashboards with customizable widgets
+- Recommended direction: Clean card layout with collapsible sidebar,
+  monochromatic base with strategic accent colors for CTAs
+- Key patterns to borrow: Tab-based navigation, drill-down interactions,
+  export actions in context menus
+
+"Based on research, I recommend a clean card-based layout with collapsible
+sidebar. This aligns with 80% of current dashboards. Does this direction work?"
+```
+
+**Fallback: Web Search (if ui-ux-pro-max unavailable)**
+```
+User: "Design a dashboard"
+✅ "Let me research current dashboard design trends using web search..."
+   [Uses available web search tools]
    "Research shows: card-based layouts (80%), sidebar navigation (70%),
    data tables with inline actions (60%). Proposed direction: clean
    card layout with collapsible sidebar. Does this align?"
@@ -312,12 +458,14 @@ WHEN DESIGN_SPEC reveals PRD gaps:
 
 | Error | Correction |
 |-------|------------|
-| Direct visual output without research basis | MUST conduct MCP search tools design research first |
+| Direct visual output without research basis | MUST invoke ui-ux-pro-max skill for design research |
+| Skipping ui-ux-pro-max and using only MCP search | ui-ux-pro-max is MANDATORY; MCP search only as fallback |
 | Only style descriptions without system specs | MUST output color/typography/component specifications |
 | Vague interaction rules | Supplement state and feedback rules |
 | Design features not in PRD | Surface as scope creep, ask user |
 | Skip accessibility requirements | Include WCAG contrast, keyboard nav |
 | Missing component states | Define all: default/hover/disabled/error/focus |
+| Not using ui-ux-pro-max structured findings | MUST synthesize ui-ux-pro-max findings into DESIGN_SPEC Section 3 |
 
 ## Rationalization Counter-Arguments
 
@@ -327,13 +475,21 @@ WHEN DESIGN_SPEC reveals PRD gaps:
 | "User preferences unclear, just decide arbitrarily" | MUST clarify preferences first and record as assumptions |
 | "Specs are too heavy, skip for now" | Specs are prerequisite for reusability and consistency. Must output. |
 | "I know current design trends" | Design trends change. Research validates against current standards. |
+| "ui-ux-pro-max takes too long, I'll just use MCP search" | ui-ux-pro-max provides structured, comprehensive analysis that quick searches miss. The time investment prevents rework. |
+| "I can do design research myself without ui-ux-pro-max" | ui-ux-pro-max is specialized for design research with structured output. Self-conducted research often lacks depth and organization. |
 
 ## Red Flags (Stop and Return to Clarification)
 
 - "No research needed, experience is enough"
+- "ui-ux-pro-max takes too long, I'll just search myself"
 - "No need to ask preferences, just create a version"
 - "Only visuals, no interaction rules"
 - "Skip component specs for now"
 - "Just make it look good/modern/clean"
 - "Accessibility can come later"
 - "Design it, we'll figure out implementation"
+
+**CRITICAL Red Flag:** Skipping ui-ux-pro-max invocation for design research
+- ui-ux-pro-max is MANDATORY for Step 2 (Design Trend Research)
+- Only use fallback (MCP search) if ui-ux-pro-max is genuinely unavailable
+- Document fallback usage in DESIGN_SPEC if used

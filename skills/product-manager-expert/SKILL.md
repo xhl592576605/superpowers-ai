@@ -25,9 +25,8 @@ Transform vague requirements into executable PRDs through systematic analysis: c
 - Map user scenarios, core pain points, target audience
 
 **Step 2: Market Research**
-- MUST use MCP search tools for market size, trends, competitor information
-- Priority: Use `mcp__bing-search__bing_search` or `WebSearch` first
-- If MCP search unavailable, fallback to web_search
+- **MUST use available web search tools** for market size, trends, competitor information
+- Conduct comprehensive research using any available search capabilities
 - Identify competitor strengths/weaknesses/differentiation opportunities
 - When data insufficient, mark as "Assumption + Validation Plan"
 
@@ -91,7 +90,7 @@ Transform vague requirements into executable PRDs through systematic analysis: c
 - Proceed without clarifying ambiguities
 
 **INSTEAD:**
-- Use MCP search tools (prefer `mcp__bing-search__bing_search` or `WebSearch`) for every PRD
+- **MUST use available web search tools** for every PRD to gather current market data
 - Mark data gaps as "Assumption + Validation Plan"
 - Write quantifiable, testable acceptance criteria
 - Present 2-3 specific options when user defers
