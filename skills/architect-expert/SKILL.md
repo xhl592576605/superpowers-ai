@@ -27,7 +27,127 @@ Transform PRD and DESIGN_SPEC into executable system architecture: output detail
 - **Quality attributes** - Define performance, security, reliability, scalability, and operational requirements
 - **Delivery allocation** - Form role-based task breakdown and dependency ordering, assign corresponding expert skills
 
+## Inquiry Strategy & Priorities
+
+**CRITICAL: MUST intelligently identify project type BEFORE questioning, then use appropriate inquiry sequence.**
+
+### Project Type Identification
+
+**Use this decision tree:**
+
+```
+Is there existing codebase?
+├─ NO → New Project
+├─ YES → Is this a NEW module within existing project?
+│   ├─ YES → New Module
+│   └─ NO → Refactoring
+```
+
+**To identify:**
+1. Ask user: "Is this for a new project or existing codebase?"
+2. If existing: "Is this adding a new module or refactoring existing code?"
+3. Confirm before proceeding with inquiry sequence
+
+### Inquiry Sequence by Project Type
+
+#### Type A: New Project or New Module
+
+**Architecture-First Inquiry:**
+
+**Phase 1: Architecture Fundamentals**
+1. **Platform & Environment**
+   - Target platforms? (Web, iOS, Android, Desktop, CLI)
+   - Deployment environment? (Cloud, on-premise, edge, hybrid)
+   - Runtime constraints? (Browser versions, OS versions, hardware limits)
+
+2. **Technology Stack Constraints**
+   - Required programming languages? (Team skills, organizational standards)
+   - Existing technical dependencies? (Must integrate with legacy systems?)
+   - Forbidden technologies? (Security, compliance, or policy restrictions)
+   - Open source vs. commercial? (Licensing, budget, support requirements)
+
+3. **Data & Storage**
+   - Data persistence needs? (SQL vs. NoSQL vs. file-based)
+   - Data volume & growth rate? (Affects DB choice, sharding strategy)
+   - Data consistency requirements? (Strong vs. eventual consistency)
+   - Caching strategy? (Redis, CDN, browser cache, no cache)
+
+4. **Integration Points**
+   - External systems to integrate? (Third-party APIs, payment gateways, auth providers)
+   - Internal system dependencies? (Microservices, shared databases, message queues)
+   - Real-time requirements? (WebSockets, SSE, polling)
+
+5. **Non-Functional Constraints**
+   - Performance targets? (Response time, throughput, concurrent users)
+   - Security & compliance? (Authentication, encryption, regulations like GDPR/HIPAA)
+   - Availability & reliability? (Uptime SLA, disaster recovery, backup strategy)
+
+**Phase 2: Business Requirements**
+- After architecture constraints are understood, then clarify business logic
+- Use brainstorming skill to explore features, user flows, edge cases
+
+#### Type B: Refactoring Existing Code
+
+**Business-First, Smart Tech Assessment:**
+
+**Phase 1: Business Context**
+1. **What problem are we solving?** (Performance bottleneck? Maintainability? Feature addition? Security?)
+2. **What's NOT changing?** (Preserve existing behavior, user-facing functionality)
+3. **Success criteria?** (How do we know refactoring succeeded?)
+
+**Phase 2: Existing Architecture Assessment**
+1. **Analyze current tech stack** (Use Glob/Grep to explore codebase)
+   - What languages/frameworks are currently used?
+   - What database(s)? How is data modeled?
+   - What are the integration points?
+   - What's the deployment architecture?
+
+2. **Identify constraints & opportunities** (Smart tech assessment)
+   - **Compatibility:** Must new code work with existing stack? → Reuse existing technologies
+   - **Performance:** Is current stack the bottleneck? → Consider targeted replacement
+   - **Team skills:** Does team know current stack? → Prefer familiar technologies
+   - **Technical debt:** Is current stack end-of-life or problematic? → Plan migration strategy
+   - **Integration complexity:** Would new tech introduce friction? → Minimize tech diversity
+
+3. **Decision framework** (Make-or-buy analysis for tech choices)
+   ```
+   IF existing tech is adequate AND team knows it:
+     → Reuse existing stack (default)
+   IF existing tech is adequate BUT has known issues:
+     → Evaluate replacement cost vs. fixing issues
+   IF existing tech is inadequate for requirements:
+     → Introduce new tech incrementally, with migration plan
+   IF new tech enables significant simplification:
+     → Justify with concrete benefits and migration path
+   ```
+
+**Phase 3: Refactoring Scope & Strategy**
+- Define what changes and what stays
+- Plan incremental changes with rollback options
+- Maintain compatibility during transition
+
+### Inquiry Principles
+
+**For All Project Types:**
+- **Never guess**—when uncertain, use AskUserQuestion tool
+- **Always document assumptions**—mark as "Assumption + Validation Plan"
+- **Prioritize constraints**—understand boundaries before exploring solutions
+- **Use brainstorming skill**—continue until requirements are fully clear
+- **Validate with user**—confirm understanding before proceeding to architecture design
+
+**Red Flags During Inquiry:**
+- User says "just design something flexible" → Push for concrete constraints
+- User says "we'll figure it out later" → Flag as risk, define decision point
+- Conflicting answers from different stakeholders → Surface conflict explicitly
+- No clear project type identified → Don't proceed, clarify first
+
 ## The Process
+
+**Step 0: Project Type Identification (NEW)**
+- Determine: New Project / New Module / Refactoring
+- Select appropriate inquiry sequence (Type A or Type B above)
+- Use brainstorming skill with architecture-first or business-first questions
+- Document all constraints and decisions before proceeding
 
 **Step 1: Requirement Input Validation**
 - Get feature/module name (English directory name)

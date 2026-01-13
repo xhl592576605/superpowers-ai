@@ -1,6 +1,6 @@
 ---
 name: development-lead-expert
-description: Use when ARCHITECT.md exists and development execution needs to be coordinated. **CRITICAL: This skill MUST actively execute Task tool calls to implementer subagents for parallel implementation. NOT just planning - must actually invoke and execute subagents.** Creates DEVELOPMENT_PLAN.md with progress tracking and interactive error handling.
+description: Use when ARCHITECT.md exists and development execution needs to be coordinated. **CRITICAL: This skill MUST actively execute Task tool calls to implementer subagents for serial execution. NOT just planning - must actually invoke and execute subagents.** Creates DEVELOPMENT_PLAN.md with progress tracking and interactive error handling.
 ---
 
 # Development Lead Expert
@@ -33,23 +33,142 @@ If no actual Task tool calls are included, execution is incomplete.
 ## Core Capabilities
 
 - **Development plan generation** - Extract task list, dependencies, and skill assignments from ARCHITECT, output DEVELOPMENT_PLAN.md
-- **Task orchestration** - Identify parallel task groups based on dependencies, use Task tool for parallel subagent dispatch
+- **Task orchestration** - Execute tasks serially in dependency order, use Task tool for subagent dispatch one by one
 - **Constraint delivery** - Define file/module lists clearly, limit context scope, strictly constrain subagent modification boundaries
 - **Progress tracking** - Use TodoWrite to continuously update task status, support resume capability
 - **Exception handling** - Interactive error handling for subagent failures (stop/skip/retry/user input)
+
+## Architecture Priority Rules
+
+<EXTREMELY_IMPORTANT>
+**CRITICAL: ARCHITECT.md is the source of truth - NEVER re-ask what's already defined there!**
+</EXTREMELY_IMPORTANT>
+
+### What's Already Defined in ARCHITECT (DO NOT Re-ask)
+
+**Technology Stack (Section 8) - Defined & Locked:**
+- Frontend framework, version, build tools
+- Backend framework, language, runtime
+- Database, cache, message queue choices
+- Deployment infrastructure
+
+**Technology Constraints (Section 8.6) - MANDATORY Commands:**
+- Required commands for initialization, build, test
+- Deprecated/prohibited methods explicitly marked
+- Version requirements with minimum and recommended versions
+- Best practice requirements
+
+**Module Boundaries (Section 3) - Defined:**
+- Which modules exist, their responsibilities
+- Module dependencies and interfaces
+
+**Data Models (Section 4) - Defined:**
+- Core entities and their fields
+- Data relationships and flows
+
+**Feature/Page Design (Section 6) - Defined:**
+- User flows, page components, interactions
+- API endpoints and contracts
+
+**Task Assignments (Section 11) - Defined:**
+- Which subagent handles which task
+- Task dependencies and execution order
+
+### What SHOULD Be Asked (Implementation Details Only)
+
+**Ask ONLY when ARCHITECT is silent or ambiguous:**
+
+| Category | Examples |
+|----------|----------|
+| **Implementation nuances** | "Use async/await or promises?" "Component class or functional?" |
+| **Code organization** | "File structure within module?" "Naming conventions?" |
+| **Edge cases** | "Handle null/undefined how?" "Error recovery strategy?" |
+| **Configuration details** | "Environment variable names?" "Config file format?" |
+| **Testing approach** | "Unit test framework specifics?" "Mock strategy?" |
+| **Validation rules** | "Email regex pattern?" "Password requirements?" |
+
+### Decision Framework Before Asking
+
+```
+Before asking ANY question:
+  ↓
+Is this defined in ARCHITECT.md?
+  ├─ YES → **USE IT** (don't ask)
+  └─ NO  → Is this an implementation detail?
+      ├─ YES → **ASK USER**
+      └─ NO  → Is this a fundamental design choice?
+          ├─ YES → **STOP** (should be in ARCHITECT, ask architect to update)
+          └─ NO  → Make reasonable assumption and document
+```
+
+### Examples of WRONG vs RIGHT Questions
+
+**❌ WRONG: Re-asking defined architecture**
+```
+"Which frontend framework should we use?" (ARCHITECT Section 8.1)
+"Which database for this feature?" (ARCHITECT Section 8.3)
+"What's the command to initialize?" (ARCHITECT Section 8.6)
+"Which subagent should do this task?" (ARCHITECT Section 11)
+```
+
+**✅ RIGHT: Asking implementation details**
+```
+"Within the React component, use hooks or class-based?"
+"For form validation, use Yup or Zod schema?"
+"Error handling: retry with backoff or fail fast?"
+"File naming: camelCase or kebab-case?"
+```
+
+### Reading ARCHITECT Correctly
+
+**When extracting constraints, read these sections FIRST:**
+
+1. **Section 8.6: Technology Constraints** - Extract required commands
+2. **Section 8: Technology Selection** - Extract stack choices
+3. **Section 11: Development Division** - Extract task assignments
+4. **Section 6: Feature Design** - Extract implementation scope
+5. **Section 3: Module Boundaries** - Extract allowed files/modules
+
+**Only AFTER reading these sections, ask:**
+- "ARCHITECT says use React, but should we use TypeScript or JavaScript?"
+- "ARCHITECT specifies PostgreSQL, but what's the connection pool size?"
+
+### Red Flags: Re-asking Architecture
+
+**Stop yourself when:**
+- [ ] Asking about technology choice (already in Section 8)
+- [ ] Asking about initialization command (already in Section 8.6)
+- [ ] Asking which subagent for task (already in Section 11)
+- [ ] Asking about module structure (already in Section 3)
+- [ ] Asking about data models (already in Section 4)
+
+**Instead:**
+- Read ARCHITECT again more carefully
+- Extract the specific constraint/command needed
+- Pass it directly to subagent in prompt
 
 ## The Process
 
 **Step 1: Input Validation & Context Loading**
 - Get feature/module name (English directory name)
 - Confirm PRD.md, DESIGN_SPEC.md, ARCHITECT.md paths exist and are complete
-- Parse "Development Division & Milestones" section from ARCHITECT
+- **CRITICAL: Read ARCHITECT.md sections in this order FIRST:**
+  1. Section 8.6: Technology Constraints and Required Commands (extract all MANDATORY commands)
+  2. Section 8: Technology Selection (extract stack choices)
+  3. Section 11: Development Division and Milestones (extract task assignments)
+  4. Section 6: Feature/Page-Level Architecture Design (extract implementation scope)
+  5. Section 3: System Layers and Module Boundaries (extract allowed files/modules)
+- **Extract and document:**
+  - Technology constraints (required commands, prohibited methods)
+  - Task assignments (which subagent for which task)
+  - Module boundaries (allowed files and modules)
+  - Dependencies (task execution order)
 - Identify key features and corresponding subagent assignments
 - Mark gaps as "Assumption + Validation Plan"
 
 **Step 2: Development Plan Generation**
 - Read task list and skill assignments from ARCHITECT
-- Generate parallel-execution task groups based on dependencies from ARCHITECT
+- Generate serial execution order based on dependencies from ARCHITECT
 - Output DEVELOPMENT_PLAN.md with fixed structure
 - Save path: `.claude/superpowers/plan/change/{feature}/DEVELOPMENT_PLAN.md` (same directory as PRD, DESIGN_SPEC, ARCHITECT)
 
@@ -71,17 +190,18 @@ If no actual Task tool calls are included, execution is incomplete.
   - **"Main agent" or "Use main agent" marked**: Main agent executes directly
 - **TodoWrite only tracks progress, doesn't mean main agent executes all tasks**
 
-**Step 4: Parallel Task Execution**
+**Step 4: Serial Task Execution**
 
 <EXTREMELY_IMPORTANT>
 **Warning: Planning ≠ Execution! MUST immediately call Task tool to start subagents!**
 
 **Core Principles:**
 - MUST NOT output task planning without executing calls
-- Each batch MUST immediately use Task tool to call subagents in next message
+- Each task MUST immediately use Task tool to call subagent in next message
 - Call format: Use Task tool, specify implementer-prompt template with task context
 - Prohibit using "execute later", "next step execute" delayed wording
 - This step's output MUST contain actual Task tool calls, not just descriptions
+- **Execute tasks ONE BY ONE in serial order**, wait for completion before next task
 
 **Execution Method (per ARCHITECT.md assignment):**
 - **Tasks marked as specific subagent**: MUST use Task tool to call that subagent
@@ -91,14 +211,17 @@ If no actual Task tool calls are included, execution is incomplete.
 - **Prohibit main agent from executing tasks marked as specific subagents in ARCHITECT.md**
 - **Prohibit skipping Task tool calls and coding tasks with subagents yourself**
 - **Prohibit changing subagent-marked tasks to main agent execution**
+- **Prohibit parallel execution - all tasks must execute serially**
 </EXTREMELY_IMPORTANT>
 
-- Identify parallel-executable task groups (no dependencies)
-- Execute by task grouping:
-  - **Subagent-marked tasks**: Use Task tool single-message multi-call for parallel execution
+- Execute tasks in serial order based on dependency graph from ARCHITECT.md
+- Execute ONE task at a time:
+  - **Subagent-marked tasks**: Use Task tool to call subagent
   - **Main agent-marked tasks**: Main agent executes directly
+- Wait for task completion before starting next task
 - For each subagent call, pass:
   - Task goal and acceptance criteria
+  - **Technology constraints and required commands** (extract from ARCHITECT.md Section 8.6)
   - Allowed file path list (use Glob to verify existence)
   - Allowed module name list
   - Context limits (extract relevant section content from ARCHITECT.md)
@@ -112,7 +235,7 @@ If no actual Task tool calls are included, execution is incomplete.
 
 - Immediately update TodoWrite status to completed after each task
 - **Immediately update task status in DEVELOPMENT_PLAN.md after each task**
-- **After task success, auto-judge and execute next task, don't stop after outputting summary**
+- **After task success, auto-continue to next task in serial order**
 - **Don't output "Task X completed, continue?" type prompts**
 - **Only stop when encountering errors or needing user decisions**
 
@@ -122,14 +245,14 @@ If no actual Task tool calls are included, execution is incomplete.
 | Option | Description | Follow-up Action |
 |--------|-------------|-------------------|
 | **Stop** | Abort entire development flow | Save current progress, wait for user instructions |
-| **Skip** | Skip current task, continue other non-dependent tasks | Mark task as skipped, continue execution |
+| **Skip** | Skip current task, continue to next task in order | Mark task as skipped, continue execution |
 | **Retry** | Re-execute current task | Call subagent again, configurable retry count |
 | **User Input** | Let user provide additional context or guidance | Wait for user input, decide follow-up based on input |
 
 **Auto-continue Conditions:**
-- All tasks in current batch completed
+- Current task completed successfully
 - No stop-required red flags encountered
-- Next batch tasks exist → **Auto-continue execute next batch**
+- More tasks exist in execution order → **Auto-continue to next task**
 
 **Step 6: Completion Summary**
 - After all tasks complete, generate development summary report
@@ -138,14 +261,20 @@ If no actual Task tool calls are included, execution is incomplete.
 
 ## Subagent Constraint Method
 
-### Constraint Principle: Combine Both
+### Constraint Principle: Combine Three Layers
 
-**1. File/Module List Constraints**
+**1. Technology Constraints (NEW - Prevents using outdated commands)**
+- Extract from ARCHITECT.md Section 8.6 "Technology Constraints and Required Commands"
+- Pass MANDATORY commands, versions, and prohibited methods
+- Include reference links for verification
+- Mark deprecated commands explicitly
+
+**2. File/Module List Constraints**
 - Explicitly list allowed file paths and module names
 - Use Glob tool to verify file existence
 - Prohibit subagents from modifying files outside constraint scope
 
-**2. Context Scope Limits**
+**3. Context Scope Limits**
 - Extract current task-related section content from ARCHITECT.md
 - Pass only necessary context to subagents
 - Avoid passing full documents causing subagents to "overstep boundaries"
@@ -153,35 +282,49 @@ If no actual Task tool calls are included, execution is incomplete.
 ### Example Call Method
 
 ```markdown
-Call frontend-developer subagent:
-- Task goal: Implement user login page
-- Allowed files: src/pages/LoginPage.vue, src/components/LoginForm.vue
-- Allowed modules: HomePage, UserProfile
-- Constraint scope: Only handle login form logic, no permission verification
+Call multi-platform-developer subagent:
+- Task goal: Initialize React Native project
+- **Technology Constraints (from ARCHITECT Section 8.6):**
+  - Required: `npx react-native@latest init MyAppName`
+  - Prohibited: `react-native init` (deprecated)
+  - Reference: https://reactnative.dev/docs/environment-setup
+- Allowed files: MyReactNativeApp/**, package.json
+- Allowed modules: App, Navigation
+- Constraint scope: Only initialize project, don't implement features
 - Input document: ARCHITECT.md Section 6.1 content
-- Acceptance criteria: Form validation, submit API, error handling
+- Acceptance criteria:
+  - [ ] Used `npx react-native@latest` (verified)
+  - [ ] Project structure created correctly
+  - [ ] iOS and Android folders exist
 ```
 
-## Parallel Execution Strategy
+## Serial Execution Strategy
 
 ### Task Dependency Identification
 - Extract dependencies from ARCHITECT.md "Development Division & Milestones"
 - Build task dependency graph
+- Sort tasks topologically to determine serial execution order
 
-### Parallel Execution Rules
-- Tasks without dependencies go into same batch, parallel execution
-- Tasks with dependencies execute serially
-- Use Task tool single-message multi-call for parallel
+### Serial Execution Rules
+- **ALL tasks execute serially, ONE BY ONE**
+- Execute in dependency order: dependencies first, then dependents
+- Wait for each task to complete before starting next task
+- Use Task tool to call subagent for each task individually
 
 ### Example
 
 ```
-Batch 1 (Parallel):
+Task 1 (No dependencies):
 - frontend-developer: Login page
-- multi-platform-developer: Home navigation
+→ Execute and wait for completion
 
-Batch 2 (Depends on Batch 1):
+Task 2 (No dependencies):
+- multi-platform-developer: Home navigation
+→ Execute and wait for completion
+
+Task 3 (Depends on Task 1):
 - frontend-developer: Post-login redirect logic
+→ Execute and wait for completion
 ```
 
 ## DEVELOPMENT_PLAN.md Document Structure
@@ -201,10 +344,12 @@ Batch 2 (Depends on Batch 1):
 - Success criteria
 - Constraints (time/resource/technical)
 
-## 2. Task Groups & Dependencies
-- Task Group A (parallel)
-- Task Group B (depends on A)
-- Task Group C (depends on A/B)
+## 2. Execution Order
+Tasks execute in serial order based on dependencies:
+1. Task 1 (No dependencies)
+2. Task 2 (No dependencies)
+3. Task 3 (Depends on Task 1)
+4. Task 4 (Depends on Task 2)
 
 ## 3. Detailed Task List
 ### 3.1 {Task Name}
@@ -240,20 +385,18 @@ Batch 2 (Depends on Batch 1):
 - [⊘] skipped - Skipped
 - [✗] failed - Failed
 
-### Task Progress
-
-#### Batch 1 (Parallel)
+### Task Progress (Serial Execution)
 - [ ] Task 3.1: Login page (frontend-developer)
 - [ ] Task 3.2: Home navigation (multi-platform-developer)
-
-#### Batch 2 (Depends on Batch 1)
-- [ ] Task 3.3: Post-login redirect (frontend-developer)
+- [ ] Task 3.3: Post-login redirect (frontend-developer) [depends on 3.1]
 
 ### Execution Record
 | Time | Task | Status | Notes |
 |------|------|--------|-------|
 | YYYY-MM-DD HH:mm | Task 3.1 | in_progress | Started |
 | YYYY-MM-DD HH:mm | Task 3.1 | completed | Completed |
+| YYYY-MM-DD HH:mm | Task 3.2 | in_progress | Started |
+| YYYY-MM-DD HH:mm | Task 3.2 | completed | Completed |
 ```
 
 ## Conversation Round Execution Mechanism
@@ -264,31 +407,29 @@ Batch 2 (Depends on Batch 1):
 
 ### Execution Model
 
-This skill uses **batch synchronous conversation round model**:
+This skill uses **serial synchronous conversation round model**:
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│ Round N: Parent skill calls subagents                    │
-│ development-lead-expert output:                           │
-│   "Starting Batch 1 parallel tasks:"                      │
-│   Task(tool="implementer-prompt", prompt="...")           │
-│   Task(tool="implementer-prompt", prompt="...")           │
+│ Round N: Parent skill calls first subagent               │
+│ development-lead-expert output:                          │
+│   "Starting Task 1:"                                     │
+│   Task(tool="implementer-prompt", prompt="...")          │
 └─────────────────────────────────────────────────────────┘
                           ↓
 ┌─────────────────────────────────────────────────────────┐
-│ Round N+1: Subagents execute and output results          │
-│ AI executes tasks per implementer-prompt instructions   │
-│ AI executes tasks per implementer-prompt instructions   │
-│ Output: Subagent execution results, code, reports        │
+│ Round N+1: Subagent executes and outputs result          │
+│ AI executes task per implementer-prompt instructions    │
+│ Output: Subagent execution result, code, report          │
 └─────────────────────────────────────────────────────────┘
                           ↓
 ┌─────────────────────────────────────────────────────────┐
-│ Round N+2: Parent skill continues processing results    │
+│ Round N+2: Parent skill continues processing result     │
 │ development-lead-expert auto-continues:                  │
-│   1. Read subagent outputs from conversation history     │
+│   1. Read subagent output from conversation history      │
 │   2. Update TodoWrite status to completed               │
-│   3. Check if next batch exists                         │
-│   4. If yes, continue calling next batch subagents      │
+│   3. Check if next task exists                          │
+│   4. If yes, continue calling next task subagent        │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -296,23 +437,23 @@ This skill uses **batch synchronous conversation round model**:
 
 1. **No "monitoring" needed**
    - Task tool executes in current conversation context
-   - Subagent outputs visible to parent skill in next round
+   - Subagent output visible to parent skill in next round
    - Natural conversation flow, no special monitoring/polling
 
 2. **Results auto-visible**
    - Subagent execution results appear in conversation history
-   - Parent skill gets subagent outputs by reading conversation history
+   - Parent skill gets subagent output by reading conversation history
    - No extra "return" or "notify" mechanism needed
 
 3. **Continue trigger**
-   - When all subagents complete, AI auto-continues parent skill
+   - When subagent completes, AI auto-continues parent skill
    - Parent skill decides next step by checking conversation history and TodoWrite
    - No manual "continue" trigger needed from user
 
-4. **Batch wait mechanism**
-   - After calling batch of subagents, wait for all to complete
-   - Process all results together in next round
-   - Then judge if need to start next batch
+4. **Serial execution mechanism**
+   - Call ONE subagent at a time
+   - Wait for completion before next task
+   - Process result, then judge if need to start next task
 
 ## Subagent Call Mandatory Rules
 
@@ -324,10 +465,10 @@ This skill uses **batch synchronous conversation round model**:
 
 1. **Prohibit planning without execution**
    - MUST NOT output "I will call XXX subagent", "Next call XXX"
-   - MUST actually use Task tool in next message to call subagents
+   - MUST actually use Task tool in next message to call subagent
 
 2. **Immediate execution principle**
-   - After each batch task planning completes, MUST call immediately in next message
+   - After current task planning completes, MUST call immediately in next message
    - MUST NOT use "later", "next", "next step" delayed wording
    - MUST NOT require user confirmation before execution (unless red flag)
 
@@ -353,32 +494,31 @@ Task(tool="implementer-prompt", prompt="...")
 ### Execution Verification
 
 After task completion, check:
-- [ ] Includes actual Task tool calls in message
+- [ ] Includes actual Task tool call in message
 - [ ] Tool parameter is correct
 - [ ] Passed prompt contains task goal and constraint scope
-- [ ] Uses single-message multi-call for parallel
+- [ ] Only ONE subagent call per message (serial execution)
 
 ### Mandatory Output Template
 
 <EXTREMELY_IMPORTANT>
-**Output format requirement when executing "Parallel Task Execution" step:**
+**Output format requirement when executing "Serial Task Execution" step:**
 
-When executing "Parallel Task Execution" step, output must follow:
+When executing "Serial Task Execution" step, output must follow:
 
 ```
-# Batch X: Parallel Execution
+# Task X: Serial Execution
 
-**Task List:**
+**Current Task:**
 - Task 1: XXX (frontend-developer)
-- Task 2: YYY (multi-platform-developer)
 
 **Execute Immediately:**
-[MUST include actual Task tool calls here, don't omit]
+[MUST include actual Task tool call here, don't omit]
 ```
 
 **Prohibited Output:**
 ```
-# Batch X: Planning
+# Task X: Planning
 
 "I will call in next step..."
 "Next will execute..."
@@ -389,7 +529,6 @@ When executing "Parallel Task Execution" step, output must follow:
 Task(tool="implementer-prompt", prompt="Task: Implement login page
 Constraint scope: src/pages/Login.vue
 Acceptance criteria: Form validation, submit API")
-Task(tool="implementer-prompt", prompt="...")
 ```
 
 </EXTREMELY_IMPORTANT>
@@ -422,36 +561,36 @@ When subagent completes, results naturally appear in conversation history. Paren
 #### Processing Flow
 
 <EXTREMELY_IMPORTANT>
-**Important: Auto-continue next batch after processing, don't wait for user "continue"!**
+**Important: Auto-continue next task after processing, don't wait for user "continue"!**
 </EXTREMELY_IMPORTANT>
 
 ```
-Round N+2: Parent skill processes subagent results
-├── Step 1: Read conversation history, get all subagent outputs
-├── Step 2: Verify each subagent completion status
+Round N+2: Parent skill processes subagent result
+├── Step 1: Read conversation history, get subagent output
+├── Step 2: Verify subagent completion status
 │   ├── Success: Mark completed, record output
 │   ├── Failure: Use AskUserQuestion to select handling
 │   └── Partial: Ask user if accept or retry
 ├── Step 3: Update TodoWrite status
 ├── Step 4: Update DEVELOPMENT_PLAN.md execution record
-├── Step 5: Judge if need next batch
-│   ├── Yes: **Auto-continue execute next batch** (don't wait for user "continue")
+├── Step 5: Judge if need next task
+│   ├── Yes: **Auto-continue execute next task** (don't wait for user "continue")
 │   └── No: Generate development summary report
 └── Step 6: Only output summary after all tasks complete
 ```
 
 **Prohibited Behaviors:**
-- **Don't output summary and stop after each batch**
-- **Don't ask "Continue next batch?"**
+- **Don't output summary and stop after each task**
+- **Don't ask "Continue next task?"**
 - **Only stop when encountering errors**
 
 #### Continue Execution Conditions
 
-Parent skill continues next batch when:
+Parent skill continues next task when:
 
-1. **All tasks in current batch completed** (completed or skipped)
+1. **Current task completed** (completed or skipped)
 2. **No stop-required red flags encountered**
-3. **Next batch tasks exist to execute**
+3. **Next task exists to execute**
 
 #### Error Handling
 
@@ -479,50 +618,57 @@ When subagent execution fails:
 | Input validation | Read + Glob | Confirm documents exist and complete |
 | Plan generation | Parse ARCHITECT + Write | DEVELOPMENT_PLAN.md |
 | Task tracking | TodoWrite | Task status list |
-| Parallel calls | Task tool (single-message multi-call) | Multi-subagent parallel execution |
+| Serial calls | Task tool (one call at a time) | Single subagent execution per call |
 | Constraint delivery | Read (extract relevant sections) | Scoped context |
 | Error handling | AskUserQuestion | User selects handling method |
 
 ## Key Principles
 
-- **Confirm ARCHITECT.md exists** with "Development Division & Milestones" section before starting
+- **ARCHITECT.md is the source of truth** - extract and use ALL defined constraints before asking
+- **Confirm ARCHITECT.md exists** with all required sections before starting
+- **Read ARCHITECT sections in order**: 8.6 → 8 → 11 → 6 → 3 (before asking anything)
 - **Use TodoWrite to track all task statuses**
-- **Use superpowers:brainstorming to ask** until requirements fully clear
-- **Don't skip subagent constraint scope**
+- **Use superpowers:brainstorming to ask** ONLY for implementation details (not architecture)
+- **Don't skip subagent constraint scope** - pass tech constraints from ARCHITECT Section 8.6
 - **Don't pass full ARCHITECT.md to subagents** - only relevant sections
 - **Support interactive error handling** (4 options: stop/skip/retry/user input)
-- **Intelligently parallel execute tasks** based on dependencies
+- **Execute tasks serially** one by one in dependency order
 - **Don't guess API behavior or business rules** - ask or mark as assumptions
 - **Clarify with user before executing** when requirements unclear
+- **NEVER re-ask what's defined in ARCHITECT** - use it directly
 
 ## Forbidden Behaviors
 
 **NEVER:**
 - Start coding without creating DEVELOPMENT_PLAN.md
+- **Re-ask what's already defined in ARCHITECT** - read and use it directly
+- **Skip reading ARCHITECT Section 8.6** before calling subagents
 - Pass full ARCHITECT.md to subagents - only relevant sections
-- Execute all tasks serially - identify parallel tasks
+- Execute tasks in parallel - ALL tasks must execute serially
 - Auto-skip on subagent failure - interactively ask user to choose
 - Skip task status tracking - use TodoWrite continuously
-- Force parallel execution ignoring dependencies - analyze dependency graph
+- Ignore task dependencies - execute in correct order
 - Output task planning without using Task tool to call subagents (Planning ≠ Execution!)
 - Use "execute later", "next step execute" delayed wording without immediate calling
 - Execute ARCHITECT-marked subagent tasks yourself (main agent)
 - Skip Task tool calls and execute subagent tasks yourself
 - Output summary and stop after task completion
-- Ask "Continue next batch?" after each batch
+- Ask "Continue next task?" after each task
 
 **INSTEAD:**
 - Must generate development plan document first
+- **Read ARCHITECT sections in order, extract constraints, use them**
+- **Always pass Section 8.6 constraints to subagents**
 - Only pass relevant section content
-- Identify no-dependency tasks, parallel execute
+- Execute all tasks serially, one by one
 - Interactively let user choose handling on failure
 - Use TodoWrite to continuously update status
-- Analyze dependency graph, group and execute correctly
+- Respect dependency order from ARCHITECT
 - Must include actual Task tool calls in output
 - Immediately call Task tool in next message
 - Respect ARCHITECT assignments
 - Use Task tool to call assigned subagents
-- Auto-continue next batch after completion
+- Auto-continue next task after completion
 - Only stop on errors
 
 ## Common Errors and Corrections
@@ -530,37 +676,46 @@ When subagent execution fails:
 | Error | Correction |
 |-------|------------|
 | Start coding without plan | Must generate DEVELOPMENT_PLAN.md first |
+| **Re-asking ARCHITECT-defined tech choices** | Read ARCHITECT Section 8, use what's defined |
+| **Not passing tech constraints to subagent** | Extract Section 8.6, pass in prompt |
+| **Asking which subagent for task** | Read ARCHITECT Section 11, use assignment |
 | Pass full ARCHITECT to subagents | Only pass relevant sections |
-| All tasks serial execution | Identify parallel tasks, execute in parallel |
+| Tasks parallel execution | Execute all tasks serially in dependency order |
 | Auto-skip on subagent failure | Interactive user selection for handling |
 | No task status tracking | Use TodoWrite continuously update |
-| Force parallel ignoring dependencies | Analyze dependency graph, correct grouping |
+| Ignore dependencies | Respect dependency order from ARCHITECT |
 
 ## Rationalization Counter-Arguments
 
 | Rationalization | Reality |
 |-----------------|---------|
 | "ARCHITECT detailed enough, no development plan needed" | Development plan is execution basis, must specify constraints and progress |
-| "Subagents will judge what to do themselves" | Must pass clear constraint scope and context |
+| "Subagents will judge what to do themselves" | Must pass clear constraint scope and context including tech constraints |
 | "Just retry on failure, no need to ask user" | User needs to know and decide handling |
-| "Serial execution more reliable" | Parallel no-dependency tasks improve efficiency |
+| "Serial execution is slower" | Serial execution ensures correctness and avoids conflicts |
 | "Constraints too strict, limit subagent performance" | Strict constraints necessary to ensure development follows design |
+| "I'll double-check the tech choice with user" | ARCHITECT Section 8 already defines tech stack - use it, don't re-ask |
+| "Not sure about the command, better ask" | ARCHITECT Section 8.6 defines required commands - use them |
 
 ## Red Flags (Stop and Return to Clarification)
 
 **Stop when:**
-- ARCHITECT.md doesn't exist or "Development Division & Milestones" section missing
+- ARCHITECT.md doesn't exist or required sections missing
 - No constraint parameters passed when calling subagents
+- **Re-asking questions already answered in ARCHITECT**
+- **Asking about technology choice defined in Section 8**
+- **Asking about command defined in Section 8.6**
+- **Asking about task assignment defined in Section 11**
 - Skip TodoWrite progress tracking
 - Auto-retry on subagent failure without asking user
-- Force parallel execution ignoring task dependencies
+- Execute tasks in parallel ignoring serial execution requirement
 - Execute without clarifying when requirements unclear
 - **Only output task planning without using Task tool to call subagents** (Planning ≠ Execution!)
 - **Use "execute later", "next step execute" delayed wording without immediate calling**
 - **Main agent executes ARCHITECT-marked subagent tasks**
 - **Skip Task tool calls and execute subagent tasks yourself**
 - **Output summary and stop after task completion**
-- **Ask "Continue next batch?" after each batch**
+- **Ask "Continue next task?" after each task**
 
 ## Integration with Superpowers Workflow
 

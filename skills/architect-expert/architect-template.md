@@ -232,6 +232,47 @@ Module A ──→ Module B ──→ Module C
 - Alternative considerations:
 - Risk assessment:
 
+### 8.6 Technology Constraints and Required Commands (CRITICAL)
+<EXTREMELY_IMPORTANT>
+**This section defines MANDATORY commands, versions, and methods for implementation.**
+**Subagents MUST follow these constraints exactly - DO NOT use deprecated commands.**
+</EXTREMELY_IMPORTANT>
+
+**Frontend Technology Constraints**
+| Technology Area | Required Command/Method | Deprecated/Prohibited | Reference |
+|-----------------|------------------------|----------------------|-----------|
+| Project Initialization | | | |
+| Dependency Management | | | |
+| Build/Dev Server | | | |
+| Testing | | | |
+
+**Backend Technology Constraints**
+| Technology Area | Required Command/Method | Deprecated/Prohibited | Reference |
+|-----------------|------------------------|----------------------|-----------|
+| Project Initialization | | | |
+| API/Server | | | |
+| Database | | | |
+| Testing | | | |
+
+**Multi-Platform Technology Constraints (if applicable)**
+| Technology Area | Required Command/Method | Deprecated/Prohibited | Reference |
+|-----------------|------------------------|----------------------|-----------|
+| Project Initialization | | | |
+| Platform-Specific Builds | | | |
+| Dependencies | | | |
+
+**Version Requirements**
+| Dependency | Minimum Version | Recommended Version | Why |
+|------------|-----------------|---------------------|-----|
+|  |  |  |  |
+|  |  |  |  |
+
+**Best Practice Requirements**
+- [ ] Always use `npx <package>@latest` for CLI tools
+- [ ] Prefer official documentation over community tutorials
+- [ ] Verify command success before proceeding
+- [ ] Use auto-linking over manual linking (if applicable)
+
 ## 9. Non-Functional Requirements
 
 ### 9.1 Performance Metrics
