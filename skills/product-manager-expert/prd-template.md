@@ -6,186 +6,254 @@ Copy this structure and fill in all sections. Do not skip any sections.
 
 **IMPORTANT:** This template is in English, but actual generated documents should be in **Chinese (Simplified)** per user requirements.
 
+---
+
+## Modern PRD Best Practices (2024-2025)
+
+Based on industry standards from Product School, Amazon Working Backwards, and top tech companies:
+
+- **Living Document**: PRDs evolve throughout the product lifecycle
+- **Decision-Focused**: Note key decisions, add relevant links, leave no ambiguity
+- **Collaborative**: Get input from design, engineering, and stakeholders early
+- **Concise**: Prioritize clarity over completeness. TBD is acceptable for unknowns
+
+---
+
 ```markdown
 # Product Requirements Document (PRD)
 
-> Feature/Module: {feature name}
-> Path: `.claude/superpowers/plan/change/{feature}/PRD.md` (use English for {feature})
-> UI Design Spec Path: `.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md` (same feature folder)
-> Any changes must update this file synchronously
+> **Feature/Module:** {feature name}
+> **Path:** `.claude/superpowers/plan/change/{feature}/PRD.md` (use English for {feature})
+> **UI Design Spec:** `.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md`
+> **Status:** Draft | In Review | Approved | Deprecated
+> **Owner:** {Product Manager}
 
-## 1. Product Overview
+---
 
-### 1.1 Product Name
-- {Product Name}
+## Change History
 
-### 1.2 Product Positioning / Value Proposition
-- One-line positioning:
-- Problem solved:
-- Core value:
-- Target scenarios:
+Record all significant changes. Start with v0.1.
 
-### 1.3 Background and Objectives
-- Background description:
-- Business objectives:
-- Success metrics (quantifiable):
-- Business status (data/facts):
-- Change drivers (policy/market/technology):
-
-### 1.4 Target Users
-- Core users:
-- Secondary users:
-- Decision makers/payers (if applicable):
-- Key influencers:
-
-### 1.5 Product Objectives (Phased)
-- P0 (Launch/Validation):
-- P1 (Growth/Optimization):
-- P2 (Scale):
-
-### 1.6 Business Model (if applicable)
-- Revenue model:
-- Pricing range:
-- Conversion path:
-- Core growth levers:
-
-## 2. Market and User Analysis
-
-### 2.1 Market Analysis
-- Market size/trends (cite sources or assumptions):
-- Key drivers:
-- Constraints and risks:
-- Policy/compliance points:
-
-### 2.2 Competitive Analysis
-| Competitor | Core Strengths | Main Weaknesses | Differentiation Opportunities |
-|-----------|---------------|-----------------|------------------------------|
-| Competitor A |  |  |  |
-| Competitor B |  |  |  |
-
-### 2.3 User Analysis
-
-**User Segment Overview**
-| User Type | Typical Role | Usage Frequency | Willingness to Pay | Key Needs |
-|-----------|-------------|-----------------|-------------------|-----------|
-| Core users |  |  |  |  |
-| Secondary users |  |  |  |  |
-
-**User Persona (Core Users)**
-- Basic attributes:
-- Occupation/Role:
-- Income and budget:
-- Behavioral habits:
-- Core needs:
-
-**User Persona (Secondary Users)**
-- Basic attributes:
-- Role and needs:
-
-**User Pain Points (Core Users)**
-1.
-2.
-3.
-
-**User Pain Points (Secondary Users)**
-1.
-2.
-
-**User Journey/Touchpoints**
-- Touchpoint 1:
-- Touchpoint 2:
-- Touchpoint 3:
-
-**Pain Point - Cause - Opportunity Table**
-| Pain Point | Key Cause | Opportunity |
-|------------|-----------|-------------|
-|  |  |  |
-
-## 3. Feature Architecture
-
-### 3.1 Product Architecture (Tree Structure)
-```
-{Product/System}
-├─ Module A
-│  ├─ Sub-feature A1
-│  └─ Sub-feature A2
-├─ Module B
-│  └─ Sub-feature B1
-└─ Module C
-```
-
-### 3.2 Information Architecture / Page Inventory
-| Page Name | Entry Location | Description | Role Visibility | Priority |
-|-----------|----------------|-------------|------------------|----------|
-| Home | Bottom Tab/Entry Button |  | All | P0 |
-| List Page | Home/Search |  | Core Users | P1 |
-
-### 3.3 Navigation Structure (if applicable)
-- Bottom Tab:
-- Sidebar/Secondary Entry:
-
-## 4. Core Feature Definitions
-
-### 4.1 MVP Must-Have Features (P0)
-| Feature Name | Feature Description | User Value | Business Value | Business Rules | Exception/Boundary | Acceptance Criteria |
-|--------------|---------------------|------------|----------------|----------------|-------------------|-------------------|
-|  |  |  |  |  |  |  |
-
-### 4.2 Important Features (P1)
-| Feature Name | Feature Description | User Value | Business Value | Business Rules | Exception/Boundary | Acceptance Criteria |
-|--------------|---------------------|------------|----------------|----------------|-------------------|-------------------|
-|  |  |  |  |  |  |  |
-
-### 4.3 Optional Features (P2)
-| Feature Name | Feature Description | User Value | Business Value | Business Rules | Exception/Boundary | Acceptance Criteria |
-|--------------|---------------------|------------|----------------|----------------|-------------------|-------------------|
-|  |  |  |  |  |  |  |
-
-## 5. User Flow and Prototype Notes
-- Main flow (step by step):
-- Exception flow:
-- Key pages/prototype notes:
-- Entry/Trigger conditions:
-- Output results/State changes:
-
-## 6. Non-Functional Requirements
-- Performance (P95/Concurrency/Stability):
-- Security/Compliance:
-- Usability/Accessibility:
-- Reliability (SLA/Uptime):
-- Privacy/Data Protection:
-
-## 7. Acceptance Criteria (Key)
-- [Feature]: Acceptance scenario + Expected result + Boundary conditions
-- Quantitative metrics (response time, success rate, etc.):
-
-**Acceptance Scenario Table**
-| Scenario | Steps | Expected Result |
-|----------|-------|-----------------|
-|  |  |  |
-
-## 8. Risks and Dependencies
-- Risk list (Impact/Mitigation/Level):
-- External dependencies (System/API/Data):
-
-## 9. Resources and Milestones
-- Resource requirements (People/Technology/Data/Budget):
-- Milestones (Time points/Deliverables):
-- Key milestone acceptance points:
-
-## 10. Assumptions and Validation Plan
-- Assumption 1: ... → Validation method/Metrics/Owner/Time
-
-## 11. Change Log / Version
-Only record when changes occur. No entry if unchanged.
 | Version | Date | Changes | Owner |
 |---------|------|---------|-------|
-| v0.1 |  | Initial |  |
+| v0.1 | YYYY-MM-DD | Initial draft | {Name} |
+| v0.2 | YYYY-MM-DD | Added [section]; clarified [X] | {Name} |
+
+---
+
+## 1. Overview
+
+### 1.1 Background
+- Current situation/problem:
+- Why now? (Change drivers: market/user/technology/business):
+- Related initiatives/dependencies:
+
+### 1.2 Objectives
+- Business objectives (what we want to achieve):
+- Success metrics (SMART - Specific, Measurable, Achievable, Relevant, Time-bound):
+
+| Metric | Current | Target | Timeframe | How to Measure |
+|--------|---------|--------|-----------|----------------|
+| {Metric name} | {Baseline} | {Goal} | {Date} | {Data source} |
+
+### 1.3 Product Positioning
+- One-line value proposition:
+- Target users (core/secondary):
+- Key differentiators vs alternatives:
+
+---
+
+## 2. User & Market Analysis
+
+### 2.1 User Personas
+
+**Core Persona:**
+- Name/Role:
+- Goals:
+- Pain points:
+- Current solutions:
+- Key quote: "> [Direct quote representing their mindset]"
+
+**Secondary Persona:**
+- Name/Role:
+- Needs (brief):
+
+### 2.2 User Scenarios
+- Scenario 1: [Primary use case, step-by-step]
+- Scenario 2: [Secondary use case]
+- Scenario 3: [Edge case or exception flow]
+
+### 2.3 Market Analysis
+- Market size/trends (cite sources or mark as **Assumption**):
+- Competitive landscape:
+
+| Competitor | Strengths | Weaknesses | Our Differentiation |
+|-----------|-----------|------------|---------------------|
+| Competitor A |  |  |  |
+
+---
+
+## 3. Requirements & Scope
+
+### 3.1 Requirements Pool (MoSCoW Prioritized)
+
+| Priority | Feature | User Value | Business Value | Acceptance Criteria |
+|----------|---------|------------|----------------|---------------------|
+| **Must Have (P0)** | | | | |
+| | {Feature name} | {Why user cares} | {Why business cares} | {Given/When/Then} |
+| **Should Have (P1)** | | | | |
+| | {Feature name} | | | |
+| **Could Have (P2)** | | | | |
+| | {Feature name} | | | |
+
+### 3.2 MVP Boundaries
+
+**IN Scope (P0 for launch):**
+- {Core feature 1}
+- {Core feature 2}
+
+**OUT of Scope (Explicitly NOT doing):**
+- {Feature X} → Reason: {Why not now}
+- {Feature Y} → Reason: {Consider for P1/P2}
+
+---
+
+## 4. User Flows & Key Interactions
+
+### 4.1 Main Flow
+- Entry point: [Where users start]
+- Steps: [1 → 2 → 3 → ...]
+- End state: [Success outcome]
+
+### 4.2 Exception Flows
+- [Edge case 1 and handling]
+- [Error state 1 and recovery]
+
+### 4.3 State Changes
+- [Key state transitions and triggers]
+
+---
+
+## 5. Non-Functional Requirements
+
+| Category | Requirement | Metric/Standard |
+|----------|-------------|-----------------|
+| **Performance** | Response time (P95) | < X seconds |
+| | Concurrent users | X+ |
+| **Security** | Authentication | {Standard} |
+| | Data encryption | {Standard} |
+| **Compliance** | GDPR/CCPA/etc. | {Requirements} |
+| **Reliability** | Uptime target | X% |
+| **Usability** | Accessibility | WCAG X.X |
+
+---
+
+## 6. Open Issues & Decisions
+
+### 6.1 Open Issues (To Resolve)
+- [ ] {Issue 1} → Owner: {Name}, Due: {Date}
+- [ ] {Issue 2} → Owner: {Name}, Due: {Date}
+
+### 6.2 Key Decisions Made
+- **Decision:** {What was decided}
+- **Rationale:** {Why}
+- **Alternatives considered:** {What else was explored}
+
+---
+
+## 7. Risks & Dependencies
+
+### 7.1 Risk Register
+
+| Risk | Impact | Probability | Severity | Mitigation | Owner |
+|------|--------|-------------|----------|------------|-------|
+| {Risk description} | High/Med/Low | High/Med/Low | Critical/High/Med/Low | {How to prevent} | {Name} |
+
+**Severity = Impact × Probability**
+
+### 7.2 Dependencies
+- **System:** {System/API we depend on}
+- **Data:** {Data we need}
+- **Team:** {Cross-team coordination}
+- **External:** {Third-party services}
+
+---
+
+## 8. Timeline & Milestones
+
+| Phase | Deliverable | Target Date | Dependencies |
+|-------|-------------|-------------|--------------|
+| Phase 1 | {MVP features} | YYYY-MM-DD | {Dependency} |
+| Phase 2 | {P1 features} | YYYY-MM-DD | {Dependency} |
+
+### Key Milestones (Acceptance Points)
+- **M1 ({Date}):** {What must be done, acceptance criteria}
+- **M2 ({Date}):** {What must be done, acceptance criteria}
+
+---
+
+## 9. Assumptions & Validation Plan
+
+| Assumption | Validation Method | Owner | Due Date |
+|------------|-------------------|-------|----------|
+| {Assumption 1} | {How to validate} | {Name} | {Date} |
+
+*If assumption proves false: {Fallback plan}*
+
+---
+
+## 10. Q&A (Common Questions)
+
+Document questions raised during reviews and their answers:
+
+**Q: {Question}**
+A: {Answer with rationale}
+
+**Q: {Question}**
+A: {Answer with rationale}
+
+---
+
+## Appendix: Reference Materials
+
+- **Designs:** [Link to Figma/Design files]
+- **Technical Specs:** [Link to technical documentation]
+- **Research Data:** [Link to user research/market analysis]
+- **Related PRDs:** [Link to dependent PRDs]
 ```
+
+---
 
 ## Template Usage Guidelines
 
 1. **Feature naming:** Use English for directory names (e.g., `user-authentication`, `dashboard-feature`)
 2. **Language:** Template structure is in English, but fill content in **Chinese (Simplified)**
-3. **Completeness:** Fill all sections, do not skip
-4. **Updates:** Keep this file synchronized with any changes
+3. **Completeness:** Fill all sections. Use TBD for unknowns, not blanks
+4. **Updates:** Keep Change History current with every revision
+5. **Co-location:** PRD and DESIGN_SPEC must live in same feature folder
+
+---
+
+## Key Principles
+
+- **Problem first, solution later:** Start with user problem, not feature list
+- **Never fabricate data:** Use "Assumption + Validation Plan" for gaps
+- **Define MVP explicitly:** Clear boundaries prevent scope creep
+- **Make decisions visible:** Document rationale in Q&A or Key Decisions
+- **Keep it living:** Update as you learn; don't treat as static
+
+---
+
+## Industry References
+
+This template incorporates best practices from:
+
+- **[Product School PRD Template](https://productschool.com/blog/product-strategy/product-template-requirements-document-prd)** - Modern PRD structure with Change History, Open Issues, Q&A
+- **[Amazon Working Backwards](https://www.hustlebadger.com/what-do-product-managers-do/amazon-working-backwards-process/)** - Customer-obsessed, press-release-first thinking
+- **[Docs Culture at Big Tech](https://twocentspm.substack.com/p/docs-culture-at-amazon-google-and)** - Living documents, collaborative wikis, structured thinking
+
+Sources:
+- [Product School: The Only PRD Template You Need (2025)](https://productschool.com/blog/product-strategy/product-template-requirements-document-prd)
+- [Hustle Badger: Amazon Working Backwards Template](https://www.hustlebadger.com/what-do-product-managers-do/amazon-working-backwards-process/)
+- [Two Cents PM: Docs Culture at Amazon, Google, Anthropic](https://twocentspm.substack.com/p/docs-culture-at-amazon-google-and)
+- [Product Management World: Complete PRD Template Guide](https://www.prodmgmt.world/blog/prd-template-guide)
