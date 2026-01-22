@@ -71,24 +71,43 @@ digraph when_to_use {
 - Functional/non-functional requirements, risks
 
 **Step 4: Generate PRD**
-- Complete 10-section structure (see below)
-- Every requirement has acceptance criteria
+- Complete 15-section structure (see below)
+- Every feature has acceptance criteria
+- Break down EVERY feature to: pages → elements → interactions
 - Save to `.claude/superpowers/plan/change/{feature}/PRD.md`
 
-## PRD Structure (10 Sections)
+**MUST include for EACH feature:**
+- Page Inventory: Which pages implement this feature
+- Page Specifications: Layout, elements, states for each page
+- Interaction Map: How users navigate between pages
+- Element Details: Critical element behavior
+- Multi-level Acceptance Criteria: Feature, Page, and Element level
 
-| # | Section | Content |
-|---|---------|---------|
-| 1 | Background & Objectives | Positioning, value proposition, goals, metrics |
-| 2 | User Personas & Scenarios | Core/secondary users, pain points, journeys |
-| 3 | Market/Competitor Analysis | Market size, trends, competitive landscape |
-| 4 | Requirements & Scope | Pool, MVP boundaries, out-of-scope |
-| 5 | Feature Design & Prioritization | Functional breakdown with MoSCoW |
-| 6 | User Flows & Prototype Notes | Key flows, entry points, state changes |
-| 7 | Non-Functional Requirements | Performance, security, compliance, reliability |
-| 8 | Acceptance Criteria | Verifiable scenarios with expected outcomes |
-| 9 | Risks & Dependencies | Risk register with mitigation strategies |
-| 10 | Resources & Milestones | Resource requirements, key milestones |
+## PRD Structure (15 Sections)
+
+| # | Section | Content | Detail Level |
+|---|---------|---------|--------------|
+| 1 | Background & Objectives | Positioning, value proposition, goals, metrics | Feature |
+| 2 | User Personas & Scenarios | Core/secondary users, pain points, journeys | Feature |
+| 3 | Market/Competitor Analysis | Market size, trends, competitive landscape | Feature |
+| 4 | Requirements & Scope | Pool, MVP boundaries, out-of-scope | Feature |
+| 5 | Page & Screen Inventory | List all pages with navigation map | **Page (NEW)** |
+| 6 | Page-Level Specifications | Detailed layout, elements, interactions per page | **Page (NEW)** |
+| 7 | Interaction Map | Page-to-page transitions with triggers | **Interaction (NEW)** |
+| 8 | Element-Level Details | Critical element behavior | **Element (NEW)** |
+| 9 | User Flows & Key Interactions | Key flows, entry points, state changes | Feature |
+| 10 | Non-Functional Requirements | Performance, security, compliance, reliability | System |
+| 11 | Open Issues & Decisions | Outstanding issues and key decisions | Various |
+| 12 | Risks & Dependencies | Risk register with mitigation strategies | Various |
+| 13 | Timeline & Milestones | Resource requirements, key milestones | Various |
+| 14 | Assumptions & Validation Plan | Assumptions with validation methods | Various |
+| 15 | Acceptance Criteria | Feature, Page, Element criteria | **All Levels (ENHANCED)** |
+
+**CRITICAL:** Every feature MUST be broken down to:
+- ✅ Feature level (What it does)
+- ✅ Page level (Which pages implement it)
+- ✅ Element level (What UI elements on each page)
+- ✅ Interaction level (How elements respond to user actions)
 
 See `./prd-template.md` for complete template.
 See `./methods-reference.md` for MoSCoW, ICE, 5W1H, 5Why.
@@ -99,7 +118,14 @@ See `./methods-reference.md` for MoSCoW, ICE, 5W1H, 5Why.
 - **Never fabricate data**—gaps = "Assumption + Validation Plan"
 - **Requirements must be verifiable**—every feature has acceptance criteria
 - **Define MVP boundaries explicitly**—control scope creep
+- **Page-level detail is mandatory**—break down to pages, elements, interactions
 - **Output only minimum necessary core information**
+
+**Detail Level Requirements:**
+- ✅ Feature Level: What the feature does
+- ✅ Page Level: Which pages and what they contain
+- ✅ Element Level: What UI elements on each page
+- ✅ Interaction Level: How elements respond to user actions
 
 ## Common Mistakes
 
@@ -111,6 +137,11 @@ See `./methods-reference.md` for MoSCoW, ICE, 5W1H, 5Why.
 | Accept "whatever" without options | Present 2-3 specific options |
 | No MVP boundaries | Explicitly define out-of-scope |
 | Ignore requirement conflicts | Surface conflicts for user resolution |
+| **Only specify feature-level requirements** | **Break down to pages, elements, interactions** |
+| **Skip page inventory** | **List all pages/screens with purposes** |
+| **Missing page-level specifications** | **Detail layout, elements, states for each page** |
+| **No interaction map** | **Map page-to-page transitions with triggers** |
+| **Element-level acceptance criteria missing** | **Add acceptance criteria for key UI elements** |
 
 ## Red Flags - Stop and Clarify
 
@@ -119,6 +150,9 @@ See `./methods-reference.md` for MoSCoW, ICE, 5W1H, 5Why.
 - "Do everything, don't exclude anything"
 - "Make up data when insufficient"
 - "Write broad scope, narrow it later"
+- **"Page-level details are design team's job"**
+- **"Just list features, don't worry about pages"**
+- **"Interaction map is not needed for PRD"**
 
 **All of these mean: Stop. Return to clarification.**
 
