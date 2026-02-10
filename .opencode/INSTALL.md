@@ -10,7 +10,6 @@
 ### 1. Clone Superpowers
 
 ```bash
-mkdir -p ~/.config/opencode/superpowers
 git clone https://github.com/xhl592576605/superpowers-ai.git ~/.config/opencode/superpowers
 ```
 
@@ -116,10 +115,5 @@ When skills reference Claude Code tools:
 
 ## Getting Help
 
-<<<<<<< HEAD
-- Report issues: https://github.com/xhl592576605/superpowers-ai/issues
-- Documentation: https://github.com/xhl592576605/superpowers-ai
-=======
 - Report issues: https://github.com/obra/superpowers/issues
 - Full documentation: https://github.com/obra/superpowers/blob/main/docs/README.opencode.md
->>>>>>> upstream/main
