@@ -29,9 +29,9 @@ Based on industry standards from arc42, Microsoft, Google, and modern architectu
 # System Architecture Document (ARCHITECT)
 
 > **Feature/Module:** {feature name}
-> **Path:** `.claude/superpowers/plan/change/{feature}/ARCHITECT.md` (use English for {feature})
-> **PRD:** `.claude/superpowers/plan/change/{feature}/PRD.md`
-> **DESIGN_SPEC:** `.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md`
+> **Path:** `.agent/superpowers/plan/change/{feature}/ARCHITECT.md` (use English for {feature})
+> **PRD:** `.agent/superpowers/plan/change/{feature}/PRD.md`
+> **DESIGN_SPEC:** `.agent/superpowers/plan/change/{feature}/DESIGN_SPEC.md`
 > **Status:** Draft | In Review | Approved | Deprecated
 > **Owner:** {Architect}
 > **Last Updated:** YYYY-MM-DD

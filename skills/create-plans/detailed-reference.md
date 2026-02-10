@@ -13,7 +13,7 @@
 All three documents MUST exist before proceeding:
 
 ```
-.claude/superpowers/plan/change/{feature}/
+.agent/superpowers/plan/change/{feature}/
 ├── PRD.md            # Required - Product Requirements Document
 ├── DESIGN_SPEC.md    # Required - Design Specification
 └── ARCHITECT.md      # Required - Architecture Document
@@ -27,9 +27,9 @@ All three documents MUST exist before proceeding:
 
 ```bash
 # Example validation command
-test -f .claude/superpowers/plan/change/{feature}/PRD.md && \
-test -f .claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md && \
-test -f .claude/superpowers/plan/change/{feature}/ARCHITECT.md && \
+test -f .agent/superpowers/plan/change/{feature}/PRD.md && \
+test -f .agent/superpowers/plan/change/{feature}/DESIGN_SPEC.md && \
+test -f .agent/superpowers/plan/change/{feature}/ARCHITECT.md && \
 echo "All documents exist" || echo "Missing documents"
 ```
 
@@ -138,7 +138,7 @@ Always cite specific sections with document name:
 
 **Always save plans to:**
 ```
-.claude/superpowers/plan/change/{feature}/IMPLEMENTATION_PLAN.md
+.agent/superpowers/plan/change/{feature}/IMPLEMENTATION_PLAN.md
 ```
 
 **Template location:**
@@ -217,7 +217,7 @@ Example:
 #### Single File with Phases (Medium Projects)
 
 ```markdown
-.claude/superpowers/plan/change/{feature}/
+.agent/superpowers/plan/change/{feature}/
 └── IMPLEMENTATION_PLAN.md
 
 # {Feature} Implementation Plan
@@ -245,7 +245,7 @@ Example:
 #### Multi-File Organization (Large Projects)
 
 ```
-.claude/superpowers/plan/change/{feature}/
+.agent/superpowers/plan/change/{feature}/
 ├── IMPLEMENTATION_PLAN.md          # Overview (2-3 pages)
 ├── phase_1_foundation.md
 ├── phase_2_core_logic.md
@@ -348,13 +348,13 @@ Examples:
 
 ```bash
 # Move all plan files to archive
-mv IMPLEMENTATION_PLAN.md .claude/superpowers/plan/archive/{feature}_IMPLEMENTATION_PLAN.archive.md
-mv phase_*.md .claude/superpowers/plan/archive/
+mv IMPLEMENTATION_PLAN.md .agent/superpowers/plan/archive/{feature}_IMPLEMENTATION_PLAN.archive.md
+mv phase_*.md .agent/superpowers/plan/archive/
 ```
 
 **Archive structure:**
 ```
-.claude/superpowers/plan/archive/
+.agent/superpowers/plan/archive/
 ├── {feature}_IMPLEMENTATION_PLAN.archive.md
 ├── phase_1_foundation.md
 ├── phase_2_core_logic.md

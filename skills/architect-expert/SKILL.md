@@ -11,12 +11,12 @@ Transform PRD and DESIGN_SPEC into executable architecture document with impleme
 
 ## Essential Prerequisites
 
-**Before starting, MUST confirm:** PRD and DESIGN_SPEC exist at `.claude/superpowers/plan/change/{feature}/`
+**Before starting, MUST confirm:** PRD and DESIGN_SPEC exist at `.agent/superpowers/plan/change/{feature}/`
 
 **To determine feature/module name:**
 - If provided in user input, use that name
 - If unclear, use AskUserQuestion to confirm
-- Verify with Bash: `test -f ".claude/superpowers/plan/change/{feature}/PRD.md"`
+- Verify with Bash: `test -f ".agent/superpowers/plan/change/{feature}/PRD.md"`
 
 **During execution, MUST use `superpowers:brainstorming`** (or AskUserQuestion) to explore until requirements and design details are fully understood.
 
@@ -31,7 +31,7 @@ Transform PRD and DESIGN_SPEC into executable architecture document with impleme
 | **3. Architecture** | Design layers, data flows, interfaces | System architecture |
 | **4. Technology** | Select tech stack with rationale | Technology decisions |
 | **5. Development Guide** | Define code structure, workflow, roadmap | Implementation guidance |
-| **6. Output** | Write ARCHITECT.md (architecture + development) | `ARCHITECT.md` in `.claude/superpowers/plan/change/{feature}/` |
+| **6. Output** | Write ARCHITECT.md (architecture + development) | `ARCHITECT.md` in `.agent/superpowers/plan/change/{feature}/` |
 
 ## The Process
 
@@ -63,7 +63,7 @@ Transform PRD and DESIGN_SPEC into executable architecture document with impleme
 
 **Step 6: Output ARCHITECT Document**
 - Output comprehensive document (architecture + implementation)
-- Save to `.claude/superpowers/plan/change/{feature}/ARCHITECT.md`
+- Save to `.agent/superpowers/plan/change/{feature}/ARCHITECT.md`
 
 ## Key Principles
 
@@ -116,7 +116,7 @@ Phase 5: Execution → subagent-driven-development → Working feature
 
 **Shared folder:**
 ```
-.claude/superpowers/plan/change/{feature}/
+.agent/superpowers/plan/change/{feature}/
 ├── PRD.md            # Requirements source of truth
 ├── DESIGN_SPEC.md    # Design implementation of PRD
 ├── ARCHITECT.md      # System architecture + development guide

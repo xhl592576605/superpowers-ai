@@ -25,8 +25,8 @@ Based on industry standards from Figma Developer Handoff, UXPin Design Systems, 
 # Design Specification (DESIGN_SPEC)
 
 > **Feature/Module:** {feature name}
-> **Path:** `.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md`
-> **PRD Path:** `.claude/superpowers/plan/change/{feature}/PRD.md`
+> **Path:** `.agent/superpowers/plan/change/{feature}/DESIGN_SPEC.md`
+> **PRD Path:** `.agent/superpowers/plan/change/{feature}/PRD.md`
 > **Figma:** [Link to Figma file]
 > **Status:** Draft | In Review | Approved | Deprecated
 > **Owner:** {Designer}

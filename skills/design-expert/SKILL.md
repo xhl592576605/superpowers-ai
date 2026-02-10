@@ -44,7 +44,7 @@ digraph when_to_use {
 | **1. Analysis** | Parse PRD, extract goals/users/scenarios | Design objectives, requirements |
 | **2. Research** | **MUST use ui-ux-pro-max** (web search as fallback only) | Research findings, direction |
 | **3. System** | Define visual system, components, tokens | Color, typography, grid, components |
-| **4. Spec Output** | Write DESIGN_SPEC to fixed path | `DESIGN_SPEC.md` in `.claude/superpowers/plan/change/{feature}/` |
+| **4. Spec Output** | Write DESIGN_SPEC to fixed path | `DESIGN_SPEC.md` in `.agent/superpowers/plan/change/{feature}/` |
 
 ## The Process
 
@@ -68,7 +68,7 @@ digraph when_to_use {
 
 **Step 4: Generate Design Spec**
 - Output DESIGN_SPEC ensuring executability
-- Save to `.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md`
+- Save to `.agent/superpowers/plan/change/{feature}/DESIGN_SPEC.md`
 - DESIGN_SPEC and PRD must coexist in same folder
 
 ## Design Spec Structure (8 Sections)
@@ -137,7 +137,7 @@ Deliverable: Working feature
 
 **Shared folder:**
 ```
-.claude/superpowers/plan/change/{feature}/
+.agent/superpowers/plan/change/{feature}/
 ├── PRD.md            # Requirements source of truth
 ├── DESIGN_SPEC.md    # Design implementation of PRD
 └── CHANGELOG.md      # Track changes

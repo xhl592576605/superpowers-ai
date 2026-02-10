@@ -170,7 +170,7 @@ Is this defined in ARCHITECT.md?
 - Read task list and skill assignments from ARCHITECT
 - Generate serial execution order based on dependencies from ARCHITECT
 - Output DEVELOPMENT_PLAN.md with fixed structure
-- Save path: `.claude/superpowers/plan/change/{feature}/DEVELOPMENT_PLAN.md` (same directory as PRD, DESIGN_SPEC, ARCHITECT)
+- Save path: `.agent/superpowers/plan/change/{feature}/DEVELOPMENT_PLAN.md` (same directory as PRD, DESIGN_SPEC, ARCHITECT)
 
 **Step 3: Task Tracking Initialization**
 
@@ -333,10 +333,10 @@ Task 3 (Depends on Task 1):
 # Development Plan
 
 > Feature/Module: {feature name}
-> Path: .claude/superpowers/plan/change/{feature}/DEVELOPMENT_PLAN.md
-> Related: .claude/superpowers/plan/change/{feature}/PRD.md
-> Related: .claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md
-> Related: .claude/superpowers/plan/change/{feature}/ARCHITECT.md
+> Path: .agent/superpowers/plan/change/{feature}/DEVELOPMENT_PLAN.md
+> Related: .agent/superpowers/plan/change/{feature}/PRD.md
+> Related: .agent/superpowers/plan/change/{feature}/DESIGN_SPEC.md
+> Related: .agent/superpowers/plan/change/{feature}/ARCHITECT.md
 
 ## 1. Development Overview
 - Feature/module name

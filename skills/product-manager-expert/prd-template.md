@@ -24,8 +24,8 @@ Based on industry standards from Product School, Amazon Working Backwards, and t
 # Product Requirements Document (PRD)
 
 > **Feature/Module:** {feature name}
-> **Path:** `.claude/superpowers/plan/change/{feature}/PRD.md` (use English for {feature})
-> **UI Design Spec:** `.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md`
+> **Path:** `.agent/superpowers/plan/change/{feature}/PRD.md` (use English for {feature})
+> **UI Design Spec:** `.agent/superpowers/plan/change/{feature}/DESIGN_SPEC.md`
 > **Status:** Draft | In Review | Approved | Deprecated
 > **Owner:** {Product Manager}
 

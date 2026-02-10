@@ -7,9 +7,9 @@ Use this template when generating implementation plans via writing-plans_byDoc s
 - Generated OUTPUT plans should be in Chinese (for users to read)
 
 **Document References:**
-- **PRD:** `.claude/superpowers/plan/change/{feature}/PRD.md`
-- **DESIGN_SPEC:** `.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md`
-- **ARCHITECT:** `.claude/superpowers/plan/change/{feature}/ARCHITECT.md`
+- **PRD:** `.agent/superpowers/plan/change/{feature}/PRD.md`
+- **DESIGN_SPEC:** `.agent/superpowers/plan/change/{feature}/DESIGN_SPEC.md`
+- **ARCHITECT:** `.agent/superpowers/plan/change/{feature}/ARCHITECT.md`
 
 ---
 
@@ -30,9 +30,9 @@ Use this template when generating implementation plans via writing-plans_byDoc s
 
 | Document | Path | Key Sections |
 |----------|------|--------------|
-| **PRD** | `.claude/superpowers/plan/change/{feature}/PRD.md` | 1, 3, 4, 5 |
-| **DESIGN_SPEC** | `.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md` | 4, 5, 6, 7 |
-| **ARCHITECT** | `.claude/superpowers/plan/change/{feature}/ARCHITECT.md` | 3, 6, 10, 11 |
+| **PRD** | `.agent/superpowers/plan/change/{feature}/PRD.md` | 1, 3, 4, 5 |
+| **DESIGN_SPEC** | `.agent/superpowers/plan/change/{feature}/DESIGN_SPEC.md` | 4, 5, 6, 7 |
+| **ARCHITECT** | `.agent/superpowers/plan/change/{feature}/ARCHITECT.md` | 3, 6, 10, 11 |
 
 ## Module Overview
 

@@ -13,7 +13,7 @@ Generate TDD-integrated implementation plans from complete PRD + DESIGN_SPEC + A
 
 **Announce:** "I'm using the create-plans skill to generate the implementation plan."
 
-**Save to:** `.claude/superpowers/plan/change/{feature}/IMPLEMENTATION_PLAN.md`
+**Save to:** `.agent/superpowers/plan/change/{feature}/IMPLEMENTATION_PLAN.md`
 
 **Template & details:** See `implementation-plan-template.md` and `detailed-reference.md` in this directory.
 
@@ -345,7 +345,7 @@ See `detailed-reference.md` for gap format.
 
 ## Execution Handoff
 
-**"Plan complete and saved to `.claude/superpowers/plan/change/{feature}/IMPLEMENTATION_PLAN.md`.**
+**"Plan complete and saved to `.agent/superpowers/plan/change/{feature}/IMPLEMENTATION_PLAN.md`.**
 
 **For single-file plans:**
 

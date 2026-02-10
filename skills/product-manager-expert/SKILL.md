@@ -50,7 +50,7 @@ digraph when_to_use {
 | **1. Analysis** | 5W1H/5Why, define objectives/constraints | Problem statement, success metrics |
 | **2. Research** | Web search for market/competitors/trends | Market analysis, competitive landscape |
 | **3. Requirements** | User stories, MoSCoW/ICE prioritization | Requirement pool, MVP boundaries |
-| **4. PRD Output** | Write 10-section document to fixed path | `PRD.md` in `.claude/superpowers/plan/change/{feature}/` |
+| **4. PRD Output** | Write 10-section document to fixed path | `PRD.md` in `.agent/superpowers/plan/change/{feature}/` |
 
 ## The Process
 
@@ -74,7 +74,7 @@ digraph when_to_use {
 - Complete 15-section structure (see below)
 - Every feature has acceptance criteria
 - Break down EVERY feature to: pages → elements → interactions
-- Save to `.claude/superpowers/plan/change/{feature}/PRD.md`
+- Save to `.agent/superpowers/plan/change/{feature}/PRD.md`
 
 **MUST include for EACH feature:**
 - Page Inventory: Which pages implement this feature
@@ -197,7 +197,7 @@ Deliverable: Working feature
 
 **Shared folder:**
 ```
-.claude/superpowers/plan/change/{feature}/
+.agent/superpowers/plan/change/{feature}/
 ├── PRD.md            # Requirements source of truth
 ├── DESIGN_SPEC.md    # Design implementation of PRD
 └── CHANGELOG.md      # Track changes

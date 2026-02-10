@@ -1,6 +1,6 @@
 # Development Plan Template
 
-Use this template structure for DEVELOPMENT_PLAN.md. Save to `.claude/superpowers/plan/change/{feature}/DEVELOPMENT_PLAN.md`
+Use this template structure for DEVELOPMENT_PLAN.md. Save to `.agent/superpowers/plan/change/{feature}/DEVELOPMENT_PLAN.md`
 
 **IMPORTANT:** This template is in English, but actual generated documents should be in **Chinese (Simplified)** per user requirements.
 
@@ -9,11 +9,11 @@ Use this template structure for DEVELOPMENT_PLAN.md. Save to `.claude/superpower
 
 > **Feature/Module:** {feature name}
 > **Created:** {YYYY-MM-DD}
-> **Path:** `.claude/superpowers/plan/change/{feature}/DEVELOPMENT_PLAN.md`
+> **Path:** `.agent/superpowers/plan/change/{feature}/DEVELOPMENT_PLAN.md`
 > **Related Documents:**
-> - `.claude/superpowers/plan/change/{feature}/PRD.md`
-> - `.claude/superpowers/plan/change/{feature}/DESIGN_SPEC.md`
-> - `.claude/superpowers/plan/change/{feature}/ARCHITECT.md`
+> - `.agent/superpowers/plan/change/{feature}/PRD.md`
+> - `.agent/superpowers/plan/change/{feature}/DESIGN_SPEC.md`
+> - `.agent/superpowers/plan/change/{feature}/ARCHITECT.md`
 
 ---
 
