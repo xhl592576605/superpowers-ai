@@ -1,6 +1,6 @@
 ---
 name: prompt-expert
-description: Use when creating, optimizing, or refining prompts for AI interactions, Agent systems, skill documentation, or conversation enhancement. Operates in two modes: Mode 1 (flexible, independent) for direct user dialogue; Mode 2 (strict, constrained) when receiving structured constraint parameters with ARCHITECT references from any caller (main agent, development-lead-expert, or assigned subagent).
+description: "Use when creating, optimizing, or refining prompts for AI interactions, Agent systems, skill documentation, or conversation enhancement. Operates in two modes: Mode 1 (flexible, independent) for direct user dialogue; Mode 2 (strict, constrained) when receiving structured constraint parameters with ARCHITECT references from any caller (main agent, development-lead-expert, or assigned subagent)."
 ---
 
 # Prompt Expert

@@ -1,6 +1,6 @@
 ---
 name: development-lead-expert
-description: Use when ARCHITECT.md exists and development execution needs to be coordinated. **CRITICAL: This skill MUST actively execute Task tool calls to implementer subagents for serial execution. NOT just planning - must actually invoke and execute subagents.** Creates DEVELOPMENT_PLAN.md with progress tracking and interactive error handling.
+description: "Use when ARCHITECT.md exists and development execution needs to be coordinated. **CRITICAL: This skill MUST actively execute Task tool calls to implementer subagents for serial execution. NOT just planning - must actually invoke and execute subagents.** Creates DEVELOPMENT_PLAN.md with progress tracking and interactive error handling."
 ---
 
 # Development Lead Expert
