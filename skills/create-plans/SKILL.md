@@ -48,6 +48,31 @@ digraph when_to_use {
 | **3. Structure** | Three-level plan with TDD | IMPLEMENTATION_PLAN.md |
 | **4. Identify** | Cross-reference gaps | Gap list |
 
+## Plan Document Header
+
+**Every plan MUST start with this header:**
+
+```markdown
+# [Feature Name] Implementation Plan
+
+> **For Claude:** Use superpowers:executing-plans OR superpowers:subagent-driven-development
+> **IMPORTANT:** Each step MUST follow TDD: RED (failing test) → GREEN (minimal code) → REFACTOR (improve) → COMMIT
+
+**Goal:** [From PRD Section 1.2]
+**Architecture:** [From ARCHITECT Section 1.1]
+**Tech Stack:** [From ARCHITECT Section 8]
+**Success Metrics:** [From PRD Section 1.2]
+
+**Project Scale:**
+- **Total Modules:** X
+- **Estimated TDD Steps:** Y
+- **Format:** Single file / Single file with phases / Multi-file
+
+---
+```
+
+**Full template with examples:** See `implementation-plan-template.md` in this directory.
+
 ## The Process
 
 ### Step 0: Assess Project Scale
@@ -99,6 +124,169 @@ See `detailed-reference.md` for section-by-section extraction guide.
 
 See `implementation-plan-template.md` for structure, `detailed-reference.md` for TDD format and phased planning.
 
+**Example: Three-Level Structure**
+
+```markdown
+## Module 1: User Authentication
+
+**Source:** ARCHITECT Section 6.1, Section 11.4
+**Dependencies:** None
+**Phase:** Phase 1
+
+### Module Overview
+
+Implement user authentication with email/password login, session management, and password recovery (from ARCHITECT Section 6.1).
+
+### Feature 1.1: Login Form Component
+
+**User Story:** As a user, I want to log in with email/password (PRD Section 3.1.1)
+**Acceptance Criteria:** Validates credentials, shows errors (PRD Section 8.1)
+
+**Files:**
+- Create: `src/components/auth/LoginForm.tsx` (from ARCHITECT Section 10.2)
+- Test: `src/components/auth/__tests__/LoginForm.test.tsx`
+
+**Design Requirements:**
+- Component: DESIGN_SPEC Section 6.2.1 (Form component)
+- States: default/error/loading/success (DESIGN_SPEC Section 6.2.1)
+- Accessibility: ARIA labels, keyboard nav (DESIGN_SPEC Section 7.4)
+
+**Implementation Notes:**
+- Architecture: Use Context API for auth state (ARCHITECT Section 6.1.2)
+- Data model: User session in localStorage (ARCHITECT Section 4.1)
+- API endpoint: POST /api/auth/login (ARCHITECT Section 5.2)
+
+#### Step 1: RED - Write failing test
+
+**Test file:** `src/components/auth/__tests__/LoginForm.test.tsx`
+
+```tsx
+// Test for: Email validation
+// References: PRD Section 3.1.1, DESIGN_SPEC Section 6.2.1
+
+describe('LoginForm', () => {
+  it('should show validation error for invalid email', async () => {
+    render(<LoginForm />);
+    const emailInput = screen.getByLabelText('Email');
+    await userEvent.type(emailInput, 'invalid-email');
+    await userEvent.click(screen.getByRole('button', { name: 'Login' }));
+    expect(screen.getByText('Please enter a valid email')).toBeInTheDocument();
+  });
+});
+```
+
+**Run test and verify FAIL:**
+```bash
+npm test -- LoginForm.test.tsx
+# Expected: FAIL with "LoginForm component not found"
+```
+
+#### Step 2: GREEN - Write minimal implementation
+
+**Implementation file:** `src/components/auth/LoginForm.tsx`
+
+```tsx
+// Minimal implementation to pass test
+// References: ARCHITECT Section 6.1.2
+
+export function LoginForm() {
+  const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const [email, setEmail] = React.useState('');
+  const [error, setError] = React.useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateEmail(email)) {
+      setError('Please enter a valid email');
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>Email</label>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        aria-label="Email"
+      />
+      {error && <div role="alert">{error}</div>}
+      <button type="submit">Login</button>
+    </form>
+  );
+}
+```
+
+**Run test and verify PASS:**
+```bash
+npm test -- LoginForm.test.tsx
+# Expected: PASS
+```
+
+#### Step 3: REFACTOR - Improve code
+
+**Refactoring checklist:**
+- [ ] Follows naming conventions (ARCHITECT Section 10.4)
+- [ ] No code duplication (DRY)
+- [ ] Single responsibility
+- [ ] Clear, self-documenting code
+- [ ] Proper error handling
+
+**After refactoring, run test again:**
+```bash
+npm test -- LoginForm.test.tsx
+# Expected: Still PASS
+```
+
+#### Step 4: Verify integration
+
+```bash
+npm test -- auth.integration.test.tsx
+# Expected: PASS
+```
+
+#### Step 5: Manual verification (if UI component)
+
+**Manual test steps:**
+1. Open login page at /login
+2. Enter "invalid-email" in email field
+3. Click Login button
+4. Verify error message appears
+
+**Expected behavior:** Error message "Please enter a valid email" is displayed below email field (from PRD Section 8.1)
+
+#### Step 6: Commit
+
+```bash
+git add src/components/auth/LoginForm.tsx src/components/auth/__tests__/LoginForm.test.tsx
+git commit -m "feat(auth): add login form with email validation
+
+- Implements LoginForm component with email validation
+- Tests for email format validation
+- References: PRD Section 3.1.1, DESIGN_SPEC Section 6.2.1, ARCHITECT Section 6.1.2
+"
+
+# Verify commit created
+git log -1 --oneline
+```
+
+**Verification after commit:**
+```bash
+npm test      # All tests pass
+npm run lint  # No linting errors
+```
+
+### Feature 1.2: Authentication Service
+[Continue with next feature...]
+
+---
+
+## Module 2: User Profile Management
+[Continue with next module...]
+```
+
+See `implementation-plan-template.md` for complete template with all phases.
+
 ### Step 4: Identify Gaps and Inconsistencies
 
 Cross-reference all three documents for:
@@ -117,6 +305,17 @@ See `detailed-reference.md` for gap format.
 - **Identify gaps explicitly:** Don't assume - ask user
 - **Output in Chinese:** Generated plans must be in Chinese for users
 
+## Remember
+
+- **Validate first:** Always verify PRD + DESIGN_SPEC + ARCHITECT exist before starting
+- **Assess scale:** Evaluate project size to determine single/multi-file format
+- **Follow ARCHITECT order:** Respect Section 11 module dependency order
+- **TDD mandatory:** Every feature needs RED-GREEN-REFACTOR-COMMIT
+- **Precise references:** Cite specific sections (e.g., "PRD Section 3.1.1")
+- **Identify gaps:** Don't assume - list gaps for user confirmation
+- **Phase check points:** Large projects MUST validate at each phase boundary
+- **Language discipline:** Reference docs = English (for AI), Output plans = Chinese (for users)
+
 ## Common Mistakes
 
 | Mistake | Fix |
@@ -134,14 +333,15 @@ See `detailed-reference.md` for gap format.
 
 ## Red Flags - Stop and Re-read
 
-- "Documents don't exist, I'll create them"
-- "ARCHITECT order is wrong, I'll reorder"
-- "Skip TDD for simple features"
-- "Test commands are obvious"
-- "Gaps don't matter, I'll assume"
-- "Project is huge but single file is fine"
-- "I'll group modules differently than Section 11"
-- "Checkpoint validation slows things down"
+- "Documents don't exist, I'll create them" ❌ → Must have all 3 documents (PRD, DESIGN_SPEC, ARCHITECT) first
+- "ARCHITECT order is wrong, I'll reorder" ❌ → Follow Section 11 dependency order exactly
+- "Skip TDD for simple features" ❌ → TDD is mandatory for ALL features, no exceptions
+- "Test commands are obvious" ❌ → Must include exact commands with expected output
+- "Gaps don't matter, I'll assume" ❌ → Must list gaps explicitly for user confirmation
+- "Project is huge but single file is fine" ❌ → Use scale thresholds: ≤5, 6-10, >10 modules to decide format
+- "I'll group modules differently than Section 11" ❌ → Phase division MUST follow Section 11 module groups
+- "Checkpoint validation slows things down" ❌ → Phase checkpoints prevent cascade failures
+- "Language doesn't matter" ❌ → Users need Chinese plans, AI needs English references
 
 ## Execution Handoff
 
